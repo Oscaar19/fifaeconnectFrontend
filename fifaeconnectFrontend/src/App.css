@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,200&display=swap');
 
 
+
 header {
   width: 100%; 
   height: 20vh; 
@@ -28,7 +29,7 @@ nav {
 .menu {
   display: flex;
   list-style: none;
-  padding: 0;
+  margin: 0;
   width: 90vh;
   justify-content: space-around;
 }
@@ -45,30 +46,46 @@ nav {
   width: 20vh;
 }
 
-.jugador-grid {
+.staff-grid {
   background-color: #333533;
   border-radius: 10px;
   border: 2px solid #252323;
   color: #ffffff;
   font-family: 'Archivo Black', sans-serif;
   padding: 20px;
-  height: 20vh;
+  height: 25vh;
+  width: 45vh;
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin: 2%;
+}
+
+.club-card{
+  background-color: #333533;
+  border-radius: 10px;
+  border: 2px solid #252323;
+  color: #ffffff;
+  font-family: 'Archivo Black', sans-serif;
+  height: 30vh;
+  width: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
 }
 
 
 
-.jugador-grid h2 {
+.staff-grid h2 {
   margin-top: 0;
 }
 
-.jugador-grid img {
+.staff-grid img {
   max-width: 100%;
 }
 
-.jugadores-container {
+.roster-container {
   height: 100%;
   background-color: #DAD2BC;
   display: flex;
@@ -76,12 +93,12 @@ nav {
   flex-wrap: wrap;
 }
 
-.jugadores-grid {
+.roster-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
   
-  width: 98%;
+  width: 95%;
   height: 80vh;
 }
 
@@ -113,25 +130,25 @@ nav {
 }
 
 .user-photo {
-  width: 150px;
-  height: 150px;
+  width: 20vh;
+  height: 20vh;
   object-fit: cover;
   border-radius: 50%;
   margin-right: 20px;
 }
 
 .user-name {
-  font-size: 24px;
+  font-size: 2.5vh;
   margin: 0;
 }
 
 .user-club {
-  font-size: 18px;
+  font-size: 2vh;
   margin-top: 2%;
   color: #999;
 }
 
-.tarjeta-jugador{
+.tarjeta-staff,.tarjeta-club{
   cursor: pointer;
   text-decoration: none;
   height: 20vh;
@@ -161,7 +178,7 @@ nav {
   margin: 0;
 }
 
-.jugador-page{
+.roster-page{
   height: 100%;
   width: 100%;
   background-color: #DAD2BC;
@@ -169,7 +186,7 @@ nav {
   flex-wrap:wrap
 }
 
-.jugador-nombre{
+.roster-nombre{
   width: 100%;
   height: 10%;
   display: flex;
@@ -180,7 +197,7 @@ nav {
   margin-top: 2%;
 }
 
-.jugador-foto{
+.roster-foto{
   height: 80%;
   width: 30%;
   display: flex;
@@ -188,13 +205,13 @@ nav {
   flex-wrap: wrap;
 }
 
-.jugador-foto img{
-  height: 75%;
-  width: 95%;
+.roster-foto img{
+  height: 70%;
+  width: 90%;
   border: solid black;
 }
 
-.jugador-redes-sociales{
+.roster-redes-sociales{
   margin-top: 1%;
   width: 90%;
   height: 25%;
@@ -205,7 +222,7 @@ nav {
   background-color: #333533;
 }
 
-.jugador-redes-sociales h3{
+.roster-redes-sociales h3{
   display: flex;
   justify-content: center;
   color: #DAD2BC;
@@ -214,27 +231,35 @@ nav {
   margin-top: 1%;
 }
 
-.jugador-redes-sociales ul{
+.roster-redes-sociales ul{
   list-style: none;
 }
 
-.jugador-redes-sociales ul li{
+.roster-redes-sociales ul li{
   color: white;
   font-family: 'Archivo', sans-serif;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 
-.jugador-logros{
+.roster-info{
   height: 80%;
-  width: 69%;
+  width: 55%;
   border-radius: 63px 63px 63px 63px;
   -moz-border-radius: 63px 63px 63px 63px;
   -webkit-border-radius: 63px 63px 63px 63px;
   background-color: #A99985;
-  
 }
 
-.jugador-logros h3{
+.roster-info{
+  height: 80%;
+  width: 55%;
+  border-radius: 63px 63px 63px 63px;
+  -moz-border-radius: 63px 63px 63px 63px;
+  -webkit-border-radius: 63px 63px 63px 63px;
+  background-color: #A99985;
+}
+
+.roster-info h3{
   display: flex;
   justify-content: center;
   color: #F5F1ED;
@@ -243,6 +268,215 @@ nav {
   font-size: 5vh;
 
 }
+
+.roster-info ul li{
+  margin-top: 2%;
+}
+
+.roster-info h3{
+  display: flex;
+  justify-content: center;
+  color: #F5F1ED;
+  font-family: 'Archivo Black', sans-serif;
+  margin-top: 3%;
+  font-size: 5vh;
+
+}
+
+.roster-info ul li{
+  margin-top: 2%;
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 15%;
+}
+
+.botones i{
+  font-size: 10vh;
+}
+
+.botones button{
+  margin-bottom: 10%;
+}
+
+.name-club {
+  font-size: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.club-logo {
+  width: 100%;
+  max-width: 10rem;
+}
+
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.club {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.club-header {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 2rem;
+  background-color: #DAD2BC;
+}
+
+.logo-club {
+  width: 35%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.club-name {
+  width: 65%;
+  height: 30%;
+  font-size: 4vh;
+}
+
+.club-content {
+  padding: 2rem;
+}
+
+.club-content h2{
+  font-family: 'Archivo Black', sans-serif;
+  text-decoration: underline;
+}
+
+.club-roster {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.club-roster li {
+  flex-basis: 100%;
+  margin-bottom: 2rem;
+}
+
+.club-roster h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.club-roster ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.club-roster li:last-child {
+  margin-bottom: 0;
+}
+
+.club{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.lista-roster h3{
+  display: flex;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.lista-roster ul{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lista-roster ul li{
+  font-family: 'Archivo', sans-serif;
+  
+}
+
+.link-jugadores{
+  text-decoration: dotted;
+  font-weight: bold;
+  color: black;
+  margin-top: 7%;
+}
+
+.link-jugadores:hover{
+  text-decoration: dotted;
+  color: #70798C;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #252323;
+}
+
+.dropdown-content a {
+  color: #F5F1ED;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #F5F1ED;
+  color: #252323;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.botoRegistre {
+  font-family: 'Archivo', sans-serif;
+  color: #ffffff;
+  font-size: 2vh;
+  font-weight: bold;
+  padding: 10px;
+  text-decoration: none;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  border-radius: 28px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  text-shadow: 1px 1px 3px #666666;
+  border: solid #252323 3px;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#a99985), to(#a99985));
+  background: -moz-linear-gradient(top, #a99985, #a99985);
+}
+.botoRegistre:hover {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f1ed), to(#252323));
+  background: -moz-linear-gradient(top, #f5f1ed, #252323)
+}
+
+
+
 
 
 
