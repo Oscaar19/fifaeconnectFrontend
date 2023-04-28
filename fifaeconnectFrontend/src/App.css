@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
-
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,200&display=swap');
 
 
 header {
-  width: 100%; /* ocupa el 100% de ancho de la ventana */
-  height: 20vh; /* ocupa el 20% de alto de ventana */
+  width: 100%; 
+  height: 20vh; 
   background-color: #333533;
   font-family: 'Archivo Black', sans-serif;
   color: #ffffff;
@@ -48,7 +48,7 @@ nav {
 .jugador-grid {
   background-color: #333533;
   border-radius: 10px;
-  border: 2px solid #202020;
+  border: 2px solid #252323;
   color: #ffffff;
   font-family: 'Archivo Black', sans-serif;
   padding: 20px;
@@ -70,7 +70,10 @@ nav {
 
 .jugadores-container {
   height: 100%;
-  background-color: #D6D6D6;
+  background-color: #DAD2BC;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .jugadores-grid {
@@ -78,7 +81,7 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
   
-  width: 100%;
+  width: 98%;
   height: 80vh;
 }
 
@@ -90,7 +93,6 @@ nav {
   justify-content: space-around;
   align-items: center;
   margin-bottom: 1%;
-  margin-top: 1%;
 }
 
 .buttons {
@@ -134,6 +136,114 @@ nav {
   text-decoration: none;
   height: 20vh;
 }
+
+.jugador-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.jugador-avatar {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.jugador-info h2 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.jugador-info p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.jugador-page{
+  height: 100%;
+  width: 100%;
+  background-color: #DAD2BC;
+  display:flex;
+  flex-wrap:wrap
+}
+
+.jugador-nombre{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  color: #252323;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 4vw;
+  margin-top: 2%;
+}
+
+.jugador-foto{
+  height: 80%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.jugador-foto img{
+  height: 75%;
+  width: 95%;
+  border: solid black;
+}
+
+.jugador-redes-sociales{
+  margin-top: 1%;
+  width: 90%;
+  height: 25%;
+  border-radius: 63px 63px 63px 63px;
+  -moz-border-radius: 63px 63px 63px 63px;
+  -webkit-border-radius: 63px 63px 63px 63px;
+  border: 0.5vh solid black;
+  background-color: #333533;
+}
+
+.jugador-redes-sociales h3{
+  display: flex;
+  justify-content: center;
+  color: #DAD2BC;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3vh;
+  margin-top: 1%;
+}
+
+.jugador-redes-sociales ul{
+  list-style: none;
+}
+
+.jugador-redes-sociales ul li{
+  color: white;
+  font-family: 'Archivo', sans-serif;
+  margin-top: 3%;
+}
+
+.jugador-logros{
+  height: 80%;
+  width: 69%;
+  border-radius: 63px 63px 63px 63px;
+  -moz-border-radius: 63px 63px 63px 63px;
+  -webkit-border-radius: 63px 63px 63px 63px;
+  background-color: #A99985;
+  
+}
+
+.jugador-logros h3{
+  display: flex;
+  justify-content: center;
+  color: #F5F1ED;
+  font-family: 'Archivo Black', sans-serif;
+  margin-top: 3%;
+  font-size: 5vh;
+
+}
+
 
 
 

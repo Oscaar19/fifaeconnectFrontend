@@ -4,6 +4,8 @@ import { UserContext } from "../userContext";
 import '../App.css';
 
 
+
+
 export default function Header() {
   let [ userName, setUserName ] = useState("");
   let [ roles, setRoles] = useState([]);
@@ -70,7 +72,17 @@ export default function Header() {
                     <li><a href="#">Clubes de eSports</a></li>
                 </ul>
                 <div className="profile">
-                    <button className="buttons" title='El meu perfil'><i className="bi bi-person-circle"></i></button>
+                    <div className="dropdown">
+                        <button className="buttons dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                            <i className="bi bi-person-circle"></i>
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a className="dropdown-item" href="#">Action</a></li>
+                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    
                     
                 </div>
 

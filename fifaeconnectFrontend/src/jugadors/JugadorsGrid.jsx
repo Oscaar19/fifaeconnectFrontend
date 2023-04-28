@@ -10,7 +10,7 @@ function JugadorsGrid() {
     { id: 2, nombre: 'Jugador 2', foto: 'ruta/a/la/foto2.jpg', info: 'Información del jugador 2 aquí' },
     { id: 3, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
     { id: 4, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
-    { id: 3, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
+    { id: 5, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
     // Añade aquí más jugadores según tus necesidades
   ];
 
@@ -21,7 +21,7 @@ function JugadorsGrid() {
             <SettingsMenu/>
             <div className="jugadores-grid">
             {jugadores.map((jugador) => (
-                <JugadorGrid key={jugador.id} nombre={jugador.nombre} foto={jugador.foto} info={jugador.info} />
+              <JugadorGrid key={jugador.id} jugador={jugador} />
             ))}
             </div>
         </div>
