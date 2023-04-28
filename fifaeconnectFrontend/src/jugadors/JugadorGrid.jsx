@@ -1,13 +1,18 @@
 import React from 'react';
 import '../App.css';
 
-function JugadorGrid() {
+function JugadorGrid({nombre,foto,info}) {
   return (
+    <a className='tarjeta-jugador' href="">
     <div className="jugador-grid">
-      <h2>Nombre del jugador</h2>
-      <img src="ruta/a/la/foto.jpg" alt="Foto del jugador" />
-      <p>Información del jugador aquí</p>
+      
+        <img src="./aaa.jpg" className="user-photo"/>
+        <div className="user-info">
+          <h2 className="user-name">{nombre}</h2>
+          <p className="user-club">Club donde Juega</p>
+        </div>
     </div>
+    </a>
   );
 }
 

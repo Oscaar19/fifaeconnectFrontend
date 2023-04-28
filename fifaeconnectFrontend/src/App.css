@@ -11,6 +11,11 @@ header {
   color: #ffffff;
 }
 
+.logo svg{
+  width: 30vh;
+  height: 30vh;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -25,12 +30,10 @@ nav {
   list-style: none;
   padding: 0;
   width: 90vh;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
-.menu li {
-  margin: 0 10px;
-}
+
 
 .menu li a {
   color: #ffffff;
@@ -38,12 +41,8 @@ nav {
   font-size: 3vh;
 }
 
-.profile a {
-  color: #ffffff;
-  text-decoration: none;
-  border: 2px solid #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
+.profile{
+  width: 20vh;
 }
 
 .jugador-grid {
@@ -54,7 +53,12 @@ nav {
   font-family: 'Archivo Black', sans-serif;
   padding: 20px;
   height: 20vh;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 }
+
+
 
 .jugador-grid h2 {
   margin-top: 0;
@@ -96,12 +100,45 @@ nav {
   cursor: pointer;
 }
 
-
-
-
-.red {
-  background-color: #f44336;
+.bi-person-circle{
+  color: white;
+  font-size: 8vh;
 }
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.user-club {
+  font-size: 18px;
+  margin-top: 2%;
+  color: #999;
+}
+
+.tarjeta-jugador{
+  cursor: pointer;
+  text-decoration: none;
+  height: 20vh;
+}
+
+
+
+
+
 
 
 

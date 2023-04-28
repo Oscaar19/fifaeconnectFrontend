@@ -9,6 +9,8 @@ function JugadorsGrid() {
     { id: 1, nombre: 'Jugador 1', foto: 'ruta/a/la/foto1.jpg', info: 'Información del jugador 1 aquí' },
     { id: 2, nombre: 'Jugador 2', foto: 'ruta/a/la/foto2.jpg', info: 'Información del jugador 2 aquí' },
     { id: 3, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
+    { id: 4, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
+    { id: 3, nombre: 'Jugador 3', foto: 'ruta/a/la/foto3.jpg', info: 'Información del jugador 3 aquí' },
     // Añade aquí más jugadores según tus necesidades
   ];
 

@@ -70,8 +70,10 @@ export default function Header() {
                     <li><a href="#">Clubes de eSports</a></li>
                 </ul>
                 <div className="profile">
-                    <a href="#">Acceder a mi perfil</a>
+                    <button className="buttons" title='El meu perfil'><i className="bi bi-person-circle"></i></button>
+                    
                 </div>
+
             </nav>
         </header>
     </>
