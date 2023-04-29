@@ -17,6 +17,7 @@ import Coach from './coaches/Coach'
 import ManagersGrid from './managers/ManagersGrid'
 import Manager from './managers/Manager'
 import Profile from './auth/Profile'
+import RegisterManager from './register/RegisterManager'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/managers" element={<><Header/><ManagersGrid /></>}/>
         <Route path="/managers/:id" element={ <Manager/> } />
         <Route path="/elmeuperfil" element={<Profile/>}/>
+        <Route path="/registermanager" element={<><Header/><RegisterManager/></>}/>
       </Routes>
     </>   
     

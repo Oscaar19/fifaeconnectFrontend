@@ -27,7 +27,7 @@ const Profile = () => {
                 <button className='botoRegistre'>Actualitza el meu perfil</button>
                 <button className='botoRegistre'>Registra'm com a jugador</button>
                 <button className='botoRegistre'>Registra'm com a coach</button>
-                <button className='botoRegistre'>Registra'm com a manager</button>
+                <button className='botoRegistre'><a href="/registermanager">Registra'm com a manager</a></button>
             </div>
         </div>
     )
