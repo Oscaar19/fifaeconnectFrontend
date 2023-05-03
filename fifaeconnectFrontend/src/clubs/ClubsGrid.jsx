@@ -7,7 +7,11 @@ const ClubsGrid = () => {
         { id: 1, name: 'Club AAAA', logo: './src/jugadors/aaa.jpg' },
         { id: 2, name: 'Club B', logo: './src/jugadors/aaa.jpg' },
         { id: 3, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
-        // ... 
+        { id: 4, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
+        { id: 5, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
+        { id: 6, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
+        { id: 7, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
+        { id: 8, name: 'Club C', logo: './src/jugadors/aaa.jpg' },
     ];
       
     return (

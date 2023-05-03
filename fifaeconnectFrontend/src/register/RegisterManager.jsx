@@ -26,46 +26,51 @@ const RegisterManager = () => {
 
 
     return (
-        <form className="register-form" onSubmit={handleSubmit}>
-            <div className='info-container'>
-                <h3>Afegeix les teves titulacions/cursos finalitzats aqui sota i registra't com a manager.</h3>
-            </div>
-            
-            <div className='titulos-container'>
-                {titulaciones.map((titulacion, index) => (
-                    <div className='titulacion' key={index}>
-                        <div className='titulo-container'>
-                            <label htmlFor={`titulo-${index}`}>Títol/Curs:</label>
-                            <input
-                                type="text"
-                                id={`titulo-${index}`}
-                                name="titulo"
-                                value={titulacion.titulo}
-                                onChange={(e) => handleInputChange(e, index)}
-                            />
+
+        <>
+            <form className="register-form" onSubmit={handleSubmit}>
+                <div className='info-container'>
+                    <h3>Afegeix les teves titulacions/cursos finalitzats aqui sota i registra't com a manager.</h3>
+                </div>
+                
+                <div className='titulos-container'>
+                    {titulaciones.map((titulacion, index) => (
+                        <div className='titulacion' key={index}>
+                            <div className='titulo-container'>
+                                <label htmlFor={`titulo-${index}`}>Títol/Curs:</label>
+                                <input
+                                    type="text"
+                                    id={`titulo-${index}`}
+                                    name="titulo"
+                                    value={titulacion.titulo}
+                                    onChange={(e) => handleInputChange(e, index)}
+                                />
+                            </div>
+
+                            <div className='años-container'>
+                                <label htmlFor={`anio-${index}`}>Any finalització:</label>
+                                <input
+                                    type="text"
+                                    id={`anio-${index}`}
+                                    name="anio"
+                                    value={titulacion.anio}
+                                    onChange={(e) => handleInputChange(e, index)}
+                                />
+                            </div>
                         </div>
+                    ))}
+                </div>            
+            </form>
 
-                        <div className='años-container'>
-                            <label htmlFor={`anio-${index}`}>Any finalització:</label>
-                            <input
-                                type="text"
-                                id={`anio-${index}`}
-                                name="anio"
-                                value={titulacion.anio}
-                                onChange={(e) => handleInputChange(e, index)}
-                            />
-                        </div>
-                    </div>
-                ))}
+            <div className='botonsRegistre'>
+                <button className='botoRegistre' type="button" onClick={handleAgregarTitulacion}>
+                    AFEGIR TITULACIÓ
+                </button>
+
+                <button className='botoRegistre' type="submit">REGISTRA'M COM A MANAGER</button>
             </div>
-            
-
-            <button className='botoRegistre' type="button" onClick={handleAgregarTitulacion}>
-                AFEGIR TITULACIÓ
-            </button>
-
-            <button className='botoRegistre' type="submit">REGISTRA'M COM A MANAGER</button>
-        </form>
+        </>
+        
 
     )
 }

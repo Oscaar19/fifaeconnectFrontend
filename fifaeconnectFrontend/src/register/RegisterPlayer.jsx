@@ -1,73 +1,61 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { UserContext } from '../userContext';
 
 const RegisterPlayer = () => {
+
+    let { anys, setAnys } = useContext(UserContext);
+    const [esAgenteLibre, setEsAgenteLibre] = useState(false);
+    const [club, setClub] = useState("");
+    const [anyInici, setAnyInici] = useState("");
+    const [anyFinal, setAnyFinal] = useState("");
+    const [trajectories, setTrajectories] = useState([{ club: "", anyInici: "", anyFinal: "" }]);
+
+    const clubes = ["Real Madrid", "Barcelona", "Atlético de Madrid", "Valencia"];
+
+    const handleEsAgenteLibreChange = (event) => {
+        setEsAgenteLibre(event.target.value === "si");
+    };
+
+    const handleClubChange = (event) => {
+        setClub(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Se ha enviado el formulario con los siguientes datos:");
+        console.log(`¿Es agente libre? ${esAgenteLibre}`);
+        console.log(`Club: ${club}`);
+    };
+
+    const handleAfegirTrajectoria = () => {
+        setTrajectories([...trajectories, { club: "", anyInici: "", anyFinal: "" }]);
+    };
+
     return (
-        <form className="register-form" onSubmit={handleSubmit}>
-            <div className='nombre-container'>
-                <label htmlFor="nombre">Nombre:</label>
-                <input
-                    id="nombre"
-                    type="text"
-                    value={nombre}
-                    onChange={handleNombreChange}
-                    required
-                />
-            </div>
-            
-
-            <div className='apellido-container'>
-                <label htmlFor="apellido">Apellido:</label>
-                <input
-                    id="apellido"
-                    type="text"
-                    value={apellido}
-                    onChange={handleApellidoChange}
-                    required
-                />
-            </div>
-            
-            <div className='email-container'>
-                <label htmlFor="email">Email:</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    required
-                />
-            </div>
-            
-            <div className='contraseña-container'>
-                <label htmlFor="contraseña">Contraseña:</label>
-                <input
-                    id="contraseña"
-                    type="password"
-                    value={contraseña}
-                    onChange={handleContraseñaChange}
-                    required
-                />
-            </div>
-            
-
-            <div className='confirmacion'></div>
-            <label htmlFor="confirmacion-contraseña">Confirmación de contraseña:</label>
-            <input
-                id="confirmacion-contraseña"
-                type="password"
-                value={confirmacionContraseña}
-                onChange={handleConfirmacionContraseñaChange}
-                required
-            />
-
-            <label htmlFor="es-agente-libre">¿Es agente libre?</label>
-            <select id="es-agente-libre" onChange={handleEsAgenteLibreChange}>
-                <option value="no">No</option>
-                <option value="si">Sí</option>
-            </select>
+        <form className="register-roster" onSubmit={handleSubmit}>
+            <div className='fa-container'>
+                <label htmlFor="es-agente-libre">Busques club d'eSports?</label>
+                <select id="es-agente-libre" onChange={handleEsAgenteLibreChange}>
+                    <option value="no">No</option>
+                    <option value="si">Sí</option>
+                </select>
+            </div>           
 
             {esAgenteLibre ? null : (
-                <div>
-                <label htmlFor="club">Club:</label>
+                <div className='club-container'>
+                    <label htmlFor="club">Club al que pertanys:</label>
+                    <select id="club" value={club} onChange={handleClubChange}>
+                        {clubes.map((club) => (
+                        <option key={club} value={club}>
+                            {club}
+                        </option>
+                        ))}
+                    </select>
+                </div>
+            )}
+
+            <div className='trajectoria-container'>
+                <label htmlFor="club">Club on vas estar:</label>
                 <select id="club" value={club} onChange={handleClubChange}>
                     {clubes.map((club) => (
                     <option key={club} value={club}>
@@ -75,10 +63,25 @@ const RegisterPlayer = () => {
                     </option>
                     ))}
                 </select>
-                </div>
-            )}
+                <label htmlFor="anyInici">Any d'inici:</label>
+                <select id="anyInici" value={anyInici} onChange={handleClubChange}>
+                    {anys.map((any) => (
+                    <option key={any} value={any}>
+                        {any}
+                    </option>
+                    ))}
+                </select>
+                <label htmlFor="anyFinal">Any de sortida:</label>
+                <select id="anyFinal" value={anyFinal} onChange={handleClubChange}>
+                    {anys.map((any) => (
+                    <option key={any} value={any}>
+                        {any}
+                    </option>
+                    ))}
+                </select>
+            </div>
 
-            <button type="submit">Registrarse</button>
+            <button className='botoRegistre' type="submit">Registra't com a nou jugador</button>
         </form>
     )
 }

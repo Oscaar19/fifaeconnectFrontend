@@ -73,7 +73,7 @@ export default function Header() {
                 </ul>
                 <div className="profile">
                     <div className="dropdown">
-                        <button className="buttons"><i class="bi bi-person-circle"></i></button>
+                        <button className="buttons"><i className="bi bi-person-circle"></i></button>
                         <div className="dropdown-content">
                             <a href="/elmeuperfil">El meu perfil</a>
                             <a href="#">Logout</a>
