@@ -20,6 +20,7 @@ import Manager from './managers/Manager'
 import Profile from './auth/Profile'
 import RegisterManager from './register/RegisterManager'
 import RegisterPlayer from './register/RegisterPlayer'
+import RegisterCoach from './register/RegisterCoach';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
           <Route path="/elmeuperfil" element={<Profile/>}/>
           <Route path="/registermanager" element={<><Header/><RegisterManager/></>}/>
           <Route path="/registerplayer" element={<><Header/><RegisterPlayer/></>}/>
+          <Route path="/registercoach" element={<><Header/><RegisterCoach/></>}/>
         </Routes>
       </>       
     </UserContext.Provider>

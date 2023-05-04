@@ -23,12 +23,18 @@ const RegisterPlayer = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Se ha enviado el formulario con los siguientes datos:");
-        console.log(`¿Es agente libre? ${esAgenteLibre}`);
-        console.log(`Club: ${club}`);
+        console.log('¿Clubes donde has jugado?'+ {trajectories});
     };
 
     const handleAfegirTrajectoria = () => {
         setTrajectories([...trajectories, { club: "", anyInici: "", anyFinal: "" }]);
+    };
+
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target;
+        const novaLlistaTrajectoria = [...trajectories];
+        novaLlistaTrajectoria[index][name] = value;
+        setTrajectories(novaLlistaTrajectoria);
     };
 
     return (
@@ -54,34 +60,40 @@ const RegisterPlayer = () => {
                 </div>
             )}
 
-            <div className='trajectoria-container'>
-                <label htmlFor="club">Club on vas estar:</label>
-                <select id="club" value={club} onChange={handleClubChange}>
-                    {clubes.map((club) => (
-                    <option key={club} value={club}>
-                        {club}
-                    </option>
-                    ))}
-                </select>
-                <label htmlFor="anyInici">Any d'inici:</label>
-                <select id="anyInici" value={anyInici} onChange={handleClubChange}>
-                    {anys.map((any) => (
-                    <option key={any} value={any}>
-                        {any}
-                    </option>
-                    ))}
-                </select>
-                <label htmlFor="anyFinal">Any de sortida:</label>
-                <select id="anyFinal" value={anyFinal} onChange={handleClubChange}>
-                    {anys.map((any) => (
-                    <option key={any} value={any}>
-                        {any}
-                    </option>
-                    ))}
-                </select>
-            </div>
+            <h3>Registra entre 1 y 4 clubs on has estat:</h3>
+                {trajectories.map((trajectoria, index) => (
+                    <div className='trajectoria' key={index}>
+                        <label htmlFor="club">Club on vas estar:</label>
+                        <select id="club" value={trajectoria.club} onChange={(e) => handleInputChange(e, index)}>
+                            {clubes.map((club) => (
+                            <option key={club} value={club}>
+                                {club}
+                            </option>
+                            ))}
+                        </select>
+                        <label htmlFor="anyInici">Any d'inici:</label>
+                        <select id="anyInici" value={trajectoria.anyInici} onChange={(e) => handleInputChange(e, index)}>
+                            {anys.map((any) => (
+                            <option key={any} value={any}>
+                                {any}
+                            </option>
+                            ))}
+                        </select>
+                        <label htmlFor="anyFinal">Any de sortida:</label>
+                        <select id="anyFinal" value={trajectoria.anyFinal} onChange={(e) => handleInputChange(e, index)}>
+                            {anys.map((any) => (
+                            <option key={any} value={any}>
+                                {any}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+                ))}
 
-            <button className='botoRegistre' type="submit">Registra't com a nou jugador</button>
+            <div className='botonsRegistre'>
+                <button className='botoRegistre' type="submit">REGISTRA'T COM A NOU JUGADOR</button>
+                <button className='botoRegistre' type="button" onClick={handleAfegirTrajectoria}>AFEGIR ENTRADA</button>
+            </div>
         </form>
     )
 }
