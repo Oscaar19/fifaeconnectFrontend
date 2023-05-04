@@ -10,12 +10,12 @@ const Jugador = () => {
         <div className="roster-foto">
             <img src='/src/jugadors/aaa.jpg' alt='Foto de perfil'/>
             <div className="roster-redes-sociales">
-            <h3>Xarxes Socials</h3>
-            <ul>
-                <li>TWITTER:</li>
-                <li>EMAIL:</li>
-                <li>LINKEDIN:</li>
-            </ul>
+                <h3>Xarxes Socials</h3>
+                <ul>
+                    <li>TWITTER:</li>
+                    <li>EMAIL:</li>
+                    <li>LINKEDIN:</li>
+                </ul>
             </div>
         </div>
         <div className="roster-info">
@@ -28,7 +28,7 @@ const Jugador = () => {
         </div>
         <div className='botones'>
             <button className='buttons'>
-                <i class="bi bi-star"></i>
+                <i className="bi bi-star"></i>
             </button>
         </div>
     </div>

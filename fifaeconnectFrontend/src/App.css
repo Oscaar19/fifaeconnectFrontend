@@ -6,15 +6,15 @@
 
 header {
   width: 100%; 
-  height: 20vh; 
+  height: 12vw; 
   background-color: #333533;
   font-family: 'Archivo Black', sans-serif;
   color: #ffffff;
 }
 
 .logo svg{
-  width: 30vh;
-  height: 30vh;
+  width: 15vw;
+  height: 15vw;
 }
 
 nav {
@@ -39,7 +39,7 @@ nav {
 .menu li a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 4vh;
+  font-size: 2vw;
 }
 
 .profile{
@@ -57,7 +57,7 @@ nav {
   width: 40vh;
   display: flex;
   align-items: center;
-  margin: 2%;
+
 }
 
 .club-card{
@@ -95,11 +95,12 @@ nav {
 
 .roster-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 25px;
-  grid-row-gap: 70px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+  grid-gap: 15vh;
+  width: 90%;
 }
+
+
 
 .settings-menu {
 
@@ -182,12 +183,12 @@ nav {
   width: 100%;
   background-color: #DAD2BC;
   display:flex;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .roster-nombre{
   width: 100%;
-  height: 10%;
+  height: 5vw;
   display: flex;
   justify-content: center;
   color: #252323;
@@ -213,7 +214,7 @@ nav {
 .roster-redes-sociales{
   margin-top: 1%;
   width: 90%;
-  height: 25%;
+  height: 10vw;
   border-radius: 63px 63px 63px 63px;
   -moz-border-radius: 63px 63px 63px 63px;
   -webkit-border-radius: 63px 63px 63px 63px;
@@ -226,7 +227,7 @@ nav {
   justify-content: center;
   color: #DAD2BC;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 3vh;
+  font-size: 1.5vw;
   margin-top: 1%;
 }
 
@@ -238,6 +239,7 @@ nav {
   color: white;
   font-family: 'Archivo', sans-serif;
   margin-top: 2%;
+  font-size: 0.8vw;
 }
 
 .roster-info{
@@ -264,26 +266,12 @@ nav {
   color: #F5F1ED;
   font-family: 'Archivo Black', sans-serif;
   margin-top: 3%;
-  font-size: 5vh;
-
+  font-size: 2vw;
 }
 
 .roster-info ul li{
   margin-top: 2%;
-}
-
-.roster-info h3{
-  display: flex;
-  justify-content: center;
-  color: #F5F1ED;
-  font-family: 'Archivo Black', sans-serif;
-  margin-top: 3%;
-  font-size: 5vh;
-
-}
-
-.roster-info ul li{
-  margin-top: 2%;
+  font-size: 0.8vw;
 }
 
 .botones{
@@ -320,10 +308,9 @@ nav {
   margin-top: 2%;
   margin-left: 2%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 20vh;
-  grid-row-gap: 20vh;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+  grid-gap: 15vh;
+  width: 90%;
 }
 
 .club {
@@ -428,6 +415,11 @@ nav {
 .dropdown {
   position: relative;
   display: inline-block;
+
+}
+
+.bi-person-circle{
+  font-size: 5vw;
 }
 
 .dropdown-content {
@@ -629,6 +621,10 @@ button {
 .register-form > .botonsRegistre{
   position: absolute;
   top: 85%;
+}
+
+.buttons > .bi-star{
+  font-size: 7vw;
 }
 
 
