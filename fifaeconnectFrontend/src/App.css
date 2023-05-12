@@ -733,7 +733,21 @@ button {
 .bi-filter{
   color: #000000;
 }
+
+.faOption{
+  width: 20vw;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1vw;
+}
+
 @media only screen and ( max-width:800px){
+
+
+  .faOption{
+    width: 28vw;
+    font-family: 'Archivo', sans-serif;
+    font-size: 2.3vw;
+  }
 
   .login-container{
     width: 70%;
@@ -762,17 +776,17 @@ button {
 
   .bi-person-circle{
     color: white;
-    font-size: 8vw;
-    margin-left: 40%;
+    font-size: 10vw;
+    margin-left: 80%;
   }
 
   .logo img{
-    width: 15vw;
-    height: 15vw;
+    width: 20vw;
+    height: 20vw;
   }
 
   header{
-    height: 15vw;
+    height: 20vw;
   }
 
   .menu-button {
@@ -813,7 +827,7 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
     grid-gap: 15vh;
     width: 90%;
-    margin-left: 25%;
+    margin-left: 10%;
   }
 
   .tarjeta-staff{

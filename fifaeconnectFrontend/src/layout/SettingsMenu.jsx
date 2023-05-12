@@ -6,7 +6,12 @@ const SettingsMenu = () => {
   return (
     <div className="settings-menu">
       <button className='buttons' title='Els teus Golden Players/Coaches/Managers'><i className="bi bi-star-fill"></i></button>
-      <button className="buttons" title='Filtres de recerca'><Link to={"/jugadorsfa"}><i className="bi bi-filter"></i></Link></button>
+      <div className="dropdown">
+        <button className="buttons"><i className="bi bi-filter"></i></button>
+        <div className="dropdown-content">
+          <Link className='faOption' to={"/jugadorsfa"}>Mira els jugadors FA</Link>            
+        </div>
+      </div>
     </div>
   );
 };
