@@ -1,75 +1,84 @@
-import React, { useState } from 'react'
-import { useForm } from "react-hook-form"
+import React, { useContext, useState } from 'react'
+import { useForm,useFieldArray } from "react-hook-form"
+import { UserContext } from '../userContext';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addManager } from '../managers/thunks';
 
 const RegisterManager = () => {
 
-    //const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    let { authToken, setAuthToken } = useContext(UserContext);
 
-    const [titulaciones, setTitulaciones] = useState([{ titulo: "", any: "" }]);
+    const dispatch = useDispatch();
 
-    const handleAgregarTitulacion = () => {
-        setTitulaciones([...titulaciones, { titulo: "", any: "" }]);
+    // let navigate = useNavigate()
+
+    const { register, control, handleSubmit} = useForm({
+        defaultValues: {
+          twitter: "",
+          linkedin: "",
+          foto: "",
+          titulacions: [{ descripcio: "", any_finalitzacio: "" }]
+        }
+    });
+
+    const afegir = data => {
+        console.log(data);
+        const data2 = { ...data, foto: data.foto[0]}
+        dispatch(addManager(data2, authToken));
+        //navigate(-1)
     };
 
-    const handleInputChange = (e, index) => {
-        const { name, value } = e.target;
-        const nuevaListaTitulaciones = [...titulaciones];
-        nuevaListaTitulaciones[index][name] = value;
-        setTitulaciones(nuevaListaTitulaciones);
-    };
+    const {fields,append} = useFieldArray({control,name: "titulacions",rules: { maxLength: 4 }});
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(titulaciones);
-    };
-
+    
 
     return (
 
         <>
-            <form className="register-form" onSubmit={handleSubmit}>
-                <div className='info-container'>
-                    <h3>Afegeix com a màxim 4 de les teves titulacions/cursos finalitzats aqui sota i registra't com a manager. </h3>
-                </div>
-                
-                <div className='titulos-container'>
-                    {titulaciones.map((titulacion, index) => (
-                        <div className='titulacion' key={index}>
-                            <div className='titulo-container'>
-                                <label htmlFor={`titulo-${index}`}>Títol/Curs:</label>
-                                <input
-                                    type="text"
-                                    id={`titulo-${index}`}
-                                    name="titulo"
-                                    value={titulacion.titulo}
-                                    onChange={(e) => handleInputChange(e, index)}
-                                />
+            <div className='form-container'>
+                <form className="register-form">
+                    <div className='info-container'>
+                        <h3>Afegeix com a màxim 4 de les teves titulacions/cursos finalitzats aqui sota i registra't com a manager. </h3>
+                    </div>
+                    
+                    <div className='titulos-container'>
+                        {fields.map((item, index) => (
+                            <div className='titulacion' key={item.id}>
+                                <div className='titulo-container'>
+                                    <label>Títol/Curs:</label>
+                                    <input type="text" {...register(`titulacions.${index}.descripcio`)}/>
+                                </div>
+                                <div className='años-container'>
+                                    <label>Any finalització:</label>
+                                    <input type="text" {...register(`titulacions.${index}.any_finalitzacio`)}/>
+                                </div>
                             </div>
+                        ))}                       
+                    </div>    
 
-                            <div className='años-container'>
-                                <label htmlFor={`any-${index}`}>Any finalització:</label>
-                                <input
-                                    type="text"
-                                    id={`any-${index}`}
-                                    name="any"
-                                    value={titulacion.any}
-                                    onChange={(e) => handleInputChange(e, index)}
-                                />
-                            </div>
+                    <div className='xarxes_container'>
+                        <div>
+                            <h3>Escriu les teves xarxes socials i afegeix una foto teva. </h3>
                         </div>
-                    ))}
-                </div>         
-                
-                <div className='botonsRegistre'>
-                    <button className='botoRegistre' type="button" onClick={handleAgregarTitulacion}>
-                        AFEGIR ENTRADA
-                    </button>
-
-                    <button className='botoRegistre' type="submit">REGISTRA'M COM A MANAGER</button>
-                </div>   
-            </form>
-
+                        <div >
+                            <input className='xarxa' type="text" placeholder="URL TWITTER" {...register("twitter")}/>
+                        </div>
+                        <br />
+                        <div>
+                            <input className='xarxa' type="text" placeholder="URL LINKEDIN" {...register("linkedin")}/>
+                        </div>
+                        <div>
+                            <input type="file" {...register("foto")}/>
+                        </div>
+                    </div>     
+                    
+                    <div className='botonsRegistre'>
+                        <button className='botoRegistre' type="submit"onClick={(e) => {e.preventDefault();append({ descripcio: "", any_finalitzacio: "" })}}>AFEGEIX UNA ENTRADA</button>
+                        <button className='botoRegistre' type="submit"onClick={handleSubmit(afegir)}>REGISTRA'M COM A MANAGER</button>
+                    </div>   
+                </form>
+            </div>
         </>
         
 

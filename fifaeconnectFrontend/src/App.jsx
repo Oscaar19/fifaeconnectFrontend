@@ -21,9 +21,12 @@ import Profile from './auth/Profile'
 import RegisterManager from './register/RegisterManager'
 import RegisterPlayer from './register/RegisterPlayer'
 import RegisterCoach from './register/RegisterCoach';
+import JugadorsFaGrid from './jugadors/fa/JugadorsFaGrid';
 
 function App() {
 
+  let [authToken, setAuthToken] = useState("");
+  let [usuari, setUsuari] = useState("");
   const [anys, setAnys] = useState([]);
 
   useEffect(() => {
@@ -37,24 +40,29 @@ function App() {
 
   return (
 
-    <UserContext.Provider value= {{ anys, setAnys }}>
-      <>
-        <Routes>
-          <Route path="/" element={<><Header/><JugadorsGrid /></>}/>
-          <Route path="/jugadors" element={<><Header/><JugadorsGrid /></>}/>
-          <Route path="/jugadors/:id" element={ <Jugador/> } />
-          <Route path="/clubs" element={<><Header/><ClubsGrid /></>}/>
-          <Route path="/clubs/:id" element={ <Club/> } />
-          <Route path="/coaches" element={<><Header/><CoachesGrid /></>}/>
-          <Route path="/coaches/:id" element={ <Coach/> } />
-          <Route path="/managers" element={<><Header/><ManagersGrid /></>}/>
-          <Route path="/managers/:id" element={ <Manager/> } />
-          <Route path="/elmeuperfil" element={<Profile/>}/>
-          <Route path="/registermanager" element={<><Header/><RegisterManager/></>}/>
-          <Route path="/registerplayer" element={<><Header/><RegisterPlayer/></>}/>
-          <Route path="/registercoach" element={<><Header/><RegisterCoach/></>}/>
-        </Routes>
-      </>       
+    <UserContext.Provider value= {{ anys, setAnys,authToken, setAuthToken,usuari, setUsuari }}>
+      {authToken ? (
+        <>
+          <Routes>
+            <Route path="/" element={<><Header/><JugadorsGrid /></>}/>
+            <Route path="/jugadors" element={<><Header/><JugadorsGrid /></>}/>
+            <Route path="/jugadors/:id" element={ <Jugador/> } />
+            <Route path="/clubs" element={<><Header/><ClubsGrid /></>}/>
+            <Route path="/clubs/:id" element={ <Club/> } />
+            <Route path="/coaches" element={<><Header/><CoachesGrid /></>}/>
+            <Route path="/coaches/:id" element={ <Coach/> } />
+            <Route path="/managers" element={<><Header/><ManagersGrid /></>}/>
+            <Route path="/managers/:id" element={ <Manager/> } />
+            <Route path="/elmeuperfil" element={<Profile/>}/>
+            <Route path="/registermanager" element={<><Header/><RegisterManager/></>}/>
+            <Route path="/registerplayer" element={<><Header/><RegisterPlayer/></>}/>
+            <Route path="/registercoach" element={<><Header/><RegisterCoach/></>}/>
+            <Route path="/jugadorsfa" element={<><Header/><JugadorsFaGrid/></>}/>
+          </Routes>
+        </> 
+      ) : (
+        <LoginRegister />
+      )}      
     </UserContext.Provider>
       
     

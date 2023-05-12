@@ -1,26 +1,36 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import SettingsMenu from '../layout/SettingsMenu';
 import ManagerGrid from './ManagerGrid';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserContext } from '../userContext';
+import { getManagers } from './thunks';
 
 const ManagersGrid = () => {
 
-    const managers = [
-        { id: 1, nombre: 'Manager 1', foto: './src/jugadors/aaa.jpg', info: 'Información del manager 1 aquí' },
-        { id: 2, nombre: 'Manager 2', foto: './src/jugadors/aaa.jpg', info: 'Información del manager 2 aquí' },
-        { id: 3, nombre: 'Manager 3', foto: './src/jugadors/aaa.jpg', info: 'Información del manager 3 aquí' },
-        { id: 4, nombre: 'Manager 4', foto: './src/jugadors/aaa.jpg', info: 'Información del manager 3 aquí' },
-        { id: 5, nombre: 'Manager 5', foto: './src/jugadors/aaa.jpg', info: 'Información del manager 3 aquí' },
-      ];
+    let {authToken,setAuthToken} = useContext(UserContext)
+    const { managers = [], page=0, isLoading=true, missatge=""} = useSelector((state) => state.managers);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getManagers(authToken));        
+    }, []);
 
     return (
-        <div className="roster-container">
-            <SettingsMenu/>
-            <div className="roster-grid">
-                {managers.map((manager) => (
-                <ManagerGrid key={manager.id} manager={manager} />
-                ))}
-            </div>
-        </div>
+        <>
+            { isLoading ? (<div> Carregant ...</div>) : ( 
+                <div className="roster-container">
+                    <SettingsMenu/>
+                    <div className="roster-grid">
+                        {managers.map((manager) => (
+                            <ManagerGrid key={manager.id} manager={manager} />
+                        ))}
+                    </div>
+                </div> 
+            )}
+        </>
+        
+        
     )
 }
 

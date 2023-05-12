@@ -26,10 +26,10 @@ const Club = () => {
         <h1 className="name-club">NOMBRE DEL CLUB</h1>
       </div>
       <div className="club-content">
-        <h2>Plantilla</h2>
+        <h2>ROSTER</h2>
         <ul className="club-roster">
           <li className='lista-roster'>
-            <h3>Jugadores</h3>
+            <h3>Jugadors</h3>
             <ul>
               {players.map((player) => (
                 <Link className="link-jugadores" to={"/jugadors/"+player.id}>
@@ -39,7 +39,7 @@ const Club = () => {
             </ul>
           </li>
           <li className='lista-roster'>
-            <h3>Entrenadores</h3>
+            <h3>Entrenadors</h3>
             <ul>
               {coaches.map((coach) => (
                 <Link className="link-jugadores" to={"/jugadors/"+coach.id}>
@@ -49,7 +49,7 @@ const Club = () => {
             </ul>
           </li>
           <li className='lista-roster'>
-            <h3>Directivos</h3>
+            <h3>Staff</h3>
             <ul>
               {managers.map((manager) => (
                 <Link className="link-jugadores" to={"/jugadors/"+manager.id}>

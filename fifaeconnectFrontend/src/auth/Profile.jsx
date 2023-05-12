@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     return (
@@ -24,10 +25,10 @@ const Profile = () => {
                 </ul>
             </div>
             <div className='botones'>
-                <a href="/registermanager"><button className='botoRegistre'>Actualitza el meu perfil</button></a>
-                <a href="/registerplayer"><button className='botoRegistre'>Registra'm com a jugador</button></a>
-                <a href="/registercoach"><button className='botoRegistre'>Registra'm com a coach</button></a>
-                <a href="/registermanager"><button className='botoRegistre'>Registra'm com a manager</button></a>
+                <Link className='botoRegistre' to={"/registermanager"}>Actualitza el meu perfil</Link>
+                <Link className='botoRegistre' to={"/registerplayer"}>Registra'm com a jugador</Link>
+                <Link className='botoRegistre' to={"/registercoach"}>Registra'm com a coach</Link>
+                <Link className='botoRegistre' to={"/registermanager"}>Registra'm com a manager</Link>
             </div>
         </div>
     )

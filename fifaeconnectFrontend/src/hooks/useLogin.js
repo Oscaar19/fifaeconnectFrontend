@@ -8,6 +8,7 @@ import { UserContext } from '../userContext'
 const useLogin = () => {
 
     const [error, setError] = useState();
+    let { authToken, setAuthToken,usuari,setUsuari } = useContext(UserContext);
 
 
     /** 
@@ -17,7 +18,7 @@ const useLogin = () => {
     const checkAuthToken = async () => {
         let myToken =localStorage.getItem("authToken") || ""
         if(myToken.length > 0){
-          const data = await fetch("https://backend.insjoaquimmir.cat/api/user", {
+          const data = await fetch("http://127.0.0.1:8000/api/user", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -31,7 +32,6 @@ const useLogin = () => {
           if (resposta.success === true) {
             setAuthToken(myToken);
             setUsuari(resposta.user.email)
-            setIdUser(resposta.user.id)
           }
         }
         else{
@@ -47,8 +47,7 @@ const useLogin = () => {
 
         const { email,password} = data
         try {
-          console.log("entro al sendLogin")
-          const data = await fetch("https://backend.insjoaquimmir.cat/api/login", {
+          const data = await fetch("http://127.0.0.1:8000/api/login", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json"
@@ -58,9 +57,10 @@ const useLogin = () => {
           });
           const resposta = await data.json();
           if (resposta.success === true) {
+            localStorage.setItem("authToken",resposta.authToken)
             setAuthToken(resposta.authToken);
             setUsuari(email)
-            localStorage.setItem("authToken",resposta.authToken)
+            
           }else {
             setError(resposta.message)
           }

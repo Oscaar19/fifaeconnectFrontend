@@ -1,105 +1,81 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../userContext';
+import { useDispatch } from 'react-redux';
+import { useFieldArray, useForm } from 'react-hook-form';
 
 const RegisterCoach = () => {
 
-  let { anys, setAnys } = useContext(UserContext);
+  let { authToken, setAuthToken } = useContext(UserContext);
+
+  const dispatch = useDispatch();
+
+  // let navigate = useNavigate()
+
+  const { register, control, handleSubmit} = useForm({
+      defaultValues: {
+        fa: "",
+        club_actual: "",
+        experiencies: [{ descripcio: ""}]
+      }
+  });
+
+  const {fields,append} = useFieldArray({control,name: "experiencies",rules: { maxLength: 4 }});
+
+  const afegir = data => {
+    console.log(data)
+    //navigate(-1)
+  };
+
   const [esAgenteLibre, setEsAgenteLibre] = useState(false);
-  const [club, setClub] = useState("");
-  const [anyInici, setAnyInici] = useState("");
-  const [anyFinal, setAnyFinal] = useState("");
-  const [trajectories, setTrajectories] = useState([{ club: "", anyInici: "", anyFinal: "" }]);
+
 
   const clubes = ["Real Madrid", "Barcelona", "Atlético de Madrid", "Valencia"];
 
-  const handleEsAgenteLibreChange = (event) => {
-    setEsAgenteLibre(event.target.value === "si");
-  };
-
-  const handleClubChange = (event) => {
-    setClub(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Se ha enviado el formulario con los siguientes datos:");
-    console.log('¿Clubes donde has jugado?' + { trajectories });
-  };
-
-  const handleAfegirTrajectoria = () => {
-    setTrajectories([...trajectories, { club: "", anyInici: "", anyFinal: "" }]);
-  };
-
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const novaLlistaTrajectoria = [...trajectories];
-    novaLlistaTrajectoria[index][name] = value;
-    setTrajectories(novaLlistaTrajectoria);
+  const handleFaChange = (event) => {
+    setEsAgenteLibre(event.target.value === "1");
   };
 
   return (
-    <form className="register-roster" onSubmit={handleSubmit}>
-      <div className='fa-container'>
-        <label htmlFor="es-agente-libre">Busques club d'eSports?</label>
-        <select id="es-agente-libre" onChange={handleEsAgenteLibreChange}>
-          <option value="no">No</option>
-          <option value="si">Sí</option>
-        </select>
+    <>
+      <div className='form-container'>
+        <form className="register-roster">
+          <div className='fa-container'>
+            <label>Busques club d'eSports?</label>
+            <select {...register(`fa`)} onChange={handleFaChange}>
+              <option value="0">No</option>
+              <option value="1">Sí</option>
+            </select>
+          </div>
+          {esAgenteLibre ? null : (
+            <div className='club-container'>
+              <label>Club al que pertanys:</label>
+              <select {...register(`club_actual`)}>
+                {clubes.map((club) => (
+                  <option key={club} value={club}>
+                    {club}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <h3>Escriu com a màxim 3 experiencies a clubs que hagis tingut:</h3>
+          <div className='titulos-container'>
+            {fields.map((item, index) => (
+              <div className='titulacion' key={item.id}>
+                <div className='titulo-container'>
+                  <label>Experiència:</label>
+                  <input type="text" {...register(`experiencies.${index}.descripcio`)}/>
+                </div>
+              </div>
+            ))}                       
+          </div> 
+          <div className='botonsRegistre'>
+            <button className='botoRegistre' type="submit"onClick={(e) => {e.preventDefault();append({ descripcio: ""})}}>AFEGEIX UNA ENTRADA</button>
+            <button className='botoRegistre' type="submit"onClick={handleSubmit(afegir)}>REGISTRA'M COM A COACH</button>
+          </div>   
+        </form>
       </div>
-
-      {esAgenteLibre ? null : (
-        <div className='club-container'>
-          <label htmlFor="club">Club al que pertanys:</label>
-          <select id="club" value={club} onChange={handleClubChange}>
-            {clubes.map((club) => (
-              <option key={club} value={club}>
-                {club}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      <h3>Registra entre 1 y 4 clubs on has estat:</h3>
-      {trajectories.map((trajectoria, index) => (
-        <div className='trajectoria' key={index}>
-          <label htmlFor={`carrec-${index}`}>Càrrec: </label>
-          <select id={`carrec-${index}`} onChange={(e) => handleInputChange(e, index)}>
-            <option value="no">Head Coach</option>
-            <option value="si">Assistant Coach</option>
-          </select>
-          <label htmlFor="club">Club:</label>
-          <select id="club" value={trajectoria.club} onChange={(e) => handleInputChange(e, index)}>
-            {clubes.map((club) => (
-              <option key={club} value={club}>
-                {club}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="anyInici">Any d'inici:</label>
-          <select id="anyInici" value={trajectoria.anyInici} onChange={(e) => handleInputChange(e, index)}>
-            {anys.map((any) => (
-              <option key={any} value={any}>
-                {any}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="anyFinal">Any de sortida:</label>
-          <select id="anyFinal" value={trajectoria.anyFinal} onChange={(e) => handleInputChange(e, index)}>
-            {anys.map((any) => (
-              <option key={any} value={any}>
-                {any}
-              </option>
-            ))}
-          </select>
-        </div>
-      ))}
-
-      <div className='botonsRegistre'>
-        <button className='botoRegistre' type="submit">REGISTRA'T COM A NOU COACH</button>
-        <button className='botoRegistre' type="button" onClick={handleAfegirTrajectoria}>AFEGIR ENTRADA</button>
-      </div>
-    </form>
+    </>
   )
 }
 

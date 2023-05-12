@@ -33,8 +33,6 @@ function JugadorsGrid() {
 ];
 
   return (
-    
-        
     <div className="roster-container">
       <SettingsMenu/>
       <div className="roster-grid">
