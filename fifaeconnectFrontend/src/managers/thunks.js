@@ -1,4 +1,4 @@
-import { startLoadingManagers, setManagers,setMissatge,setManager,setPage } from './managerSlice'
+import { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setPage } from './managerSlice'
 
 export const getManagers = (page = 0,authToken) => {
 
@@ -57,11 +57,7 @@ export const addManager = (formulari,authToken) => {
         formData.append("twitter", twitter);
         formData.append("linkedin", linkedin);
         formData.append("foto", foto);
-
-        if (!Array.isArray(titulacions)) {
-            titulacions = [titulacions];
-        }
-        formData.append("titulacions",titulacions);  
+        formData.append("titulacions",JSON.stringify(titulacions));  
 
 
         const data = await fetch("http://127.0.0.1:8000/api/managers/",
@@ -116,7 +112,9 @@ export const getManager = (authToken, id) => {
         const resposta = await data.json();
         console.log(resposta)
         if (resposta.success == true) {
-            dispatch(setManager(resposta.data));
+            dispatch(setManager(resposta.manager));
+            dispatch(setFoto(resposta.foto));
+            dispatch(setTitulacions(resposta.titulacions));
         }
 
         else {

@@ -7,10 +7,12 @@ const initialState = {
         cognom: "",
         email: "",
         password: "",
-        foto_id: { ruta:""},
+        foto_id: "",
         fa: "",
         club_id: { id:""},
     }, 
+    foto: "",
+    titulacions: [],
     page: 0,
     isLoading: true,
     missatge: "",
@@ -44,6 +46,18 @@ export const managerSlice = createSlice({
 
             state.isLoading = false
         },
+        setFoto: (state, action) => {
+
+            state.foto = action.payload
+
+            state.isLoading = false
+        },
+        setTitulacions: (state, action) => {
+
+            state.titulacions = action.payload
+
+            state.isLoading = false
+        },
         setPage: (state,action) => {
 
             state.page = action.payload
@@ -58,6 +72,6 @@ export const managerSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingManagers, setManagers,setMissatge,setManager,setPage,setAdding} = managerSlice.actions
+export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setPage,setAdding} = managerSlice.actions
 
 export default managerSlice.reducer

@@ -7,7 +7,7 @@ import { getManager } from './thunks';
 const Manager = () => {
 
     let { authToken, setAuthToken } = useContext(UserContext);
-    const { manager, isLoading=true} = useSelector((state) => state.managers);
+    const { manager, foto, titulacions,isLoading=true} = useSelector((state) => state.managers);
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -19,25 +19,28 @@ const Manager = () => {
         <>
             { isLoading  ? (<div> Carregant dades....</div>) : (
                 <div className="roster-page">
-                    <h1 className="roster-nombre">{manager.nom}</h1>
+                    <h1 className="roster-nombre">{manager.nom} {manager.cognom}</h1>
                     <div className="roster-foto">
-                        <img src='/src/jugadors/aaa.jpg' alt='Foto de perfil'/>
+                        <img src={"http://127.0.0.1:8000/storage/"+ foto.ruta} alt='Foto de perfil'/>
                         <div className="roster-redes-sociales">
                         <h3>Xarxes Socials</h3>
                         <ul>
-                            <li>TWITTER:</li>
-                            <li>INSTAGRAM:</li>
-                            <li>LINKEDIN:</li>
+                            
                         </ul>
                         </div>
                     </div>
                     <div className="roster-info">
-                        <h3>ASSOLIMENTS</h3>
+                        <h3>TITULACIONS</h3>
                         <ul>
-                            <li>TWITTER:</li>
-                            <li>EMAIL:</li>
-                            <li>LINKEDIN:</li>
+                            {titulacions.map((titulacio) => (
+                                <li key={titulacio.id}>{titulacio.descripcio}. <b>DATA DE FINALITZACIÓ: </b> {titulacio.any_finalitzacio}</li>
+                            ))}
                         </ul>
+                    </div>
+                    <div className='botones'>
+                        <button className='buttons'>
+                            <i className="bi bi-star"></i>
+                        </button>
                     </div>
                 </div>
             )}
