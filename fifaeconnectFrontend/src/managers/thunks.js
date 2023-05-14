@@ -1,4 +1,4 @@
-import { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setPage } from './managerSlice'
+import { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage } from './managerSlice'
 
 export const getManagers = (page = 0,authToken) => {
 
@@ -115,6 +115,7 @@ export const getManager = (authToken, id) => {
             dispatch(setManager(resposta.manager));
             dispatch(setFoto(resposta.foto));
             dispatch(setTitulacions(resposta.titulacions));
+            dispatch(setXarxes(resposta.xarxes));
         }
 
         else {

@@ -7,7 +7,7 @@ import { getManager } from './thunks';
 const Manager = () => {
 
     let { authToken, setAuthToken } = useContext(UserContext);
-    const { manager, foto, titulacions,isLoading=true} = useSelector((state) => state.managers);
+    const { manager, foto, titulacions,xarxes,isLoading=true} = useSelector((state) => state.managers);
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -25,7 +25,8 @@ const Manager = () => {
                         <div className="roster-redes-sociales">
                         <h3>Xarxes Socials</h3>
                         <ul>
-                            
+                            <li><b>TWITTER:</b>  {xarxes.twitter}</li>
+                            <li><b>LINKEDIN:</b> {xarxes.linkedin}</li>
                         </ul>
                         </div>
                     </div>

@@ -106,7 +106,7 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
   grid-gap: 15vh;
   width: 90%;
-  margin-left: 7%;
+  margin-left: 4%;
 }
 
 
@@ -242,6 +242,7 @@ nav {
 
 .roster-redes-sociales ul{
   list-style: none;
+  margin-top:6%;
 }
 
 .roster-redes-sociales ul li{
@@ -249,6 +250,7 @@ nav {
   font-family: 'Archivo', sans-serif;
   margin-top: 2%;
   font-size: 0.8vw;
+  height: 2vw;
 }
 
 .roster-info{

@@ -13,6 +13,10 @@ const initialState = {
     }, 
     foto: "",
     titulacions: [],
+    xarxes: {
+        twitter: "",
+        linkedin: "",
+    },
     page: 0,
     isLoading: true,
     missatge: "",
@@ -58,6 +62,12 @@ export const managerSlice = createSlice({
 
             state.isLoading = false
         },
+        setXarxes: (state, action) => {
+
+            state.xarxes = action.payload
+
+            state.isLoading = false
+        },
         setPage: (state,action) => {
 
             state.page = action.payload
@@ -72,6 +82,6 @@ export const managerSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setPage,setAdding} = managerSlice.actions
+export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setAdding} = managerSlice.actions
 
 export default managerSlice.reducer
