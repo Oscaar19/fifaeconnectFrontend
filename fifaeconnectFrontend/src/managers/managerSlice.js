@@ -21,6 +21,7 @@ const initialState = {
     isLoading: true,
     missatge: "",
     adding: false,
+    golden: false,
 }
 
 export const managerSlice = createSlice({
@@ -78,10 +79,16 @@ export const managerSlice = createSlice({
             state.adding = true
 
         },
+        setGolden: (state,action) => {
+
+            state.golden = action.payload
+            state.isLoading=false
+
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setAdding} = managerSlice.actions
+export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setAdding,setGolden} = managerSlice.actions
 
 export default managerSlice.reducer

@@ -2,12 +2,13 @@ import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../userContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { getManager } from './thunks';
+import { getManager, goldenUser, ungoldenUser } from './thunks';
+import Swal from 'sweetalert2'
 
 const Manager = () => {
 
     let { authToken, setAuthToken } = useContext(UserContext);
-    const { manager, foto, titulacions,xarxes,isLoading=true} = useSelector((state) => state.managers);
+    const { manager, foto, titulacions,xarxes,isLoading=true,golden} = useSelector((state) => state.managers);
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -39,9 +40,9 @@ const Manager = () => {
                         </ul>
                     </div>
                     <div className='botones'>
-                        <button className='buttons'>
-                            <i className="bi bi-star"></i>
-                        </button>
+                        {!golden ? (<button className='buttons' onClick={(dispatch(ungoldenUser(id,authToken)))}><i className="bi bi-star-fill"></i></button>) 
+                        : (<button className='buttons' onClick={(dispatch(goldenUser(id,authToken)))}><i className="bi bi-star"></i></button>)}
+                            
                     </div>
                 </div>
             )}

@@ -1,4 +1,4 @@
-import { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage } from './managerSlice'
+import { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setGolden } from './managerSlice'
 
 export const getManagers = (page = 0,authToken) => {
 
@@ -31,7 +31,6 @@ export const getManagers = (page = 0,authToken) => {
         const resposta = await data.json();
 
         if (resposta.success == true) {
-            console.log(resposta.data)
             dispatch(setManagers(resposta.data));
         }
 
@@ -116,6 +115,7 @@ export const getManager = (authToken, id) => {
             dispatch(setFoto(resposta.foto));
             dispatch(setTitulacions(resposta.titulacions));
             dispatch(setXarxes(resposta.xarxes));
+            dispatch(testGolden(authToken, id))
         }
 
         else {
@@ -125,4 +125,71 @@ export const getManager = (authToken, id) => {
         }
 
     };
+}
+
+export const testGolden = (authToken,id) => {
+    return async (dispatch,state) => {
+        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer '  + authToken,
+
+            },
+            method: "POST",
+        })
+        const resposta = await data.json();
+        if (resposta.success === true) {
+            const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer '  + authToken,
+
+                },
+                method: "DELETE",
+            })
+        }else{
+            dispatch(setGolden(true))
+        }
+        console.log("Salgo del test")
+    }
+}
+
+export const goldenUser = (id,authToken) => {
+
+    return async (dispatch,state) => {
+        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer '  + authToken,
+
+            },
+            method: "POST",
+        })
+        const resposta = await data.json();
+        if (resposta.success === true) {
+            dispatch(setGolden(true))
+        }
+    }
+}
+
+export const ungoldenUser = (id,authToken) => {
+
+    return async (dispatch,state) => {
+        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer '  + authToken,
+
+            },
+            method: "DELETE",
+        })
+        const resposta = await data.json();
+        if (resposta.success === true) {
+            dispatch(setGolden(false))
+        }
+    }
 }
