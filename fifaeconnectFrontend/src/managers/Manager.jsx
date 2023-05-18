@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../userContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { getManager, goldenUser, ungoldenUser } from './thunks';
-import Swal from 'sweetalert2'
+import { getManager} from './thunks';
 
 const Manager = () => {
 
@@ -26,8 +25,8 @@ const Manager = () => {
                         <div className="roster-redes-sociales">
                         <h3>Xarxes Socials</h3>
                         <ul>
-                            <li><b>TWITTER:</b>  {xarxes.twitter}</li>
-                            <li><b>LINKEDIN:</b> {xarxes.linkedin}</li>
+                            <li><b>TWITTER: </b><a href={xarxes.twitter} target="_blank" rel="noopener noreferrer">{xarxes.twitter}</a></li>
+                            <li><b>LINKEDIN: </b><a href={xarxes.linkedin} target="_blank" rel="noopener noreferrer">{xarxes.linkedin}</a></li>
                         </ul>
                         </div>
                     </div>
@@ -38,12 +37,9 @@ const Manager = () => {
                                 <li key={titulacio.id}>{titulacio.descripcio}. <b>DATA DE FINALITZACIÓ: </b> {titulacio.any_finalitzacio}</li>
                             ))}
                         </ul>
+                        
                     </div>
-                    <div className='botones'>
-                        {!golden ? (<button className='buttons' onClick={(dispatch(ungoldenUser(id,authToken)))}><i className="bi bi-star-fill"></i></button>) 
-                        : (<button className='buttons' onClick={(dispatch(goldenUser(id,authToken)))}><i className="bi bi-star"></i></button>)}
-                            
-                    </div>
+
                 </div>
             )}
         </>

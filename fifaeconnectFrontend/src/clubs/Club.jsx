@@ -1,66 +1,73 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getClub } from './thunks';
 
 const Club = () => {
 
-    const players = [
-        { id: 1, name: 'Jugador A' },
-        { id: 2, name: 'Jugador B' },
-        { id: 3, name: 'Jugador C' },
-    ];
+  const { club, manager, jugadors,coaches,isLoading=true} = useSelector((state) => state.clubs);
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-    const coaches = [
-        { id: 1, name: 'Entrenador A' },
-        { id: 2, name: 'Entrenador B' },
-    ];
-        
-    const managers = [
-        { id: 1, name: 'Directivo A' },
-        { id: 2, name: 'Directivo B' },
-    ];
+  useEffect(() => {
+    dispatch(getClub(id));
+  }, [])
 
   return (
-    <div className="club">
-      <div className="club-header">
-        <img className="logo-club" src='../src/jugadors/aaa.jpg'/>
-        <h1 className="name-club">NOMBRE DEL CLUB</h1>
-      </div>
-      <div className="club-content">
-        <h2>ROSTER</h2>
-        <ul className="club-roster">
-          <li className='lista-roster'>
-            <h3>Jugadors</h3>
-            <ul>
-              {players.map((player) => (
-                <Link className="link-jugadores" to={"/jugadors/"+player.id}>
-                    <li key={player.id}>{player.name}</li>
-                </Link>
-              ))}
+    <>
+      { isLoading  ? (<div> Carregant dades....</div>) : (
+        <div className="club">
+          <div className="club-header">
+            <img className="logo-club" src={"http://127.0.0.1:8000/storage/"+club.foto.ruta}/>
+            <h1 className="name-club">{club.nom}</h1>
+          </div>
+          <div className="club-content">
+            <h2>ROSTER</h2>
+            <ul className="club-roster">
+              <li className='lista-roster'>
+                <h3>Jugadors</h3>
+                <ul>
+                  {club.jugadors.length > 0 ? (
+                    club.jugadors.map((jugador) => (
+                      <Link className="link-jugadores" to={"/jugadors/"+jugador.id}>
+                        <li key={jugador.id}>{jugador.name}</li>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className='d-flex justify-content-center'> <h5>No hi ha cap Jugador.</h5></div>
+                  )}
+                  
+                </ul>
+              </li>
+              <li className='lista-roster'>
+                <h3>Entrenadors</h3>
+                <ul>
+                  {club.coaches.length > 0 ? (
+                    club.coaches.map((coach) => (
+                      <Link className="link-jugadores" to={"/coaches/"+coach.id}>
+                        <li key={coach.id}>{coach.name}</li>
+                      </Link>                
+                    ))
+                  ) : (
+                    <div className='d-flex justify-content-center'> <h5>No hi ha cap Coach.</h5></div>
+                  )}
+                  
+                </ul>
+              </li>
+              <li className='lista-roster'>
+                <h3>Staff</h3>
+                <ul>
+                    <Link className="link-jugadores" to={"/managers/"+club.manager.id}>
+                      <li>{club.manager.nom}</li>
+                    </Link>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li className='lista-roster'>
-            <h3>Entrenadors</h3>
-            <ul>
-              {coaches.map((coach) => (
-                <Link className="link-jugadores" to={"/jugadors/"+coach.id}>
-                    <li key={coach.id}>{coach.name}</li>
-                </Link>                
-              ))}
-            </ul>
-          </li>
-          <li className='lista-roster'>
-            <h3>Staff</h3>
-            <ul>
-              {managers.map((manager) => (
-                <Link className="link-jugadores" to={"/jugadors/"+manager.id}>
-                    <li key={manager.id}>{manager.name}</li>
-                </Link>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
+    
   );
 };
 

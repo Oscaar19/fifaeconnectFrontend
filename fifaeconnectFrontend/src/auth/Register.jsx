@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 export default function Register({ setCanvi }) {
   let [missatge, setMessage] = useState("");
-  let { authToken, setAuthToken } = useContext(UserContext);
+  let { authToken, setAuthToken,usuari,setUsuari } = useContext(UserContext);
 
   const { register, handleSubmit,  formState: { errors } } = useForm();
   const onSubmit = data => handleRegister(data)
@@ -31,7 +31,7 @@ export default function Register({ setCanvi }) {
         body: JSON.stringify({ nom,cognom, email, password })
       });
       const resposta = await data.json();
-      if (resposta.success === true) setAuthToken(resposta.authToken);
+      if (resposta.success === true) setAuthToken(resposta.authToken),setUsuari(email);
       else setMessage(resposta.message);
     }catch{
       console.log(data);

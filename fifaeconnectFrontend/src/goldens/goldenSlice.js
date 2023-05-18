@@ -4,10 +4,11 @@ const initialState = {
     goldens: [],
     isLoading: true,
     missatge: "",
-    usuari: {},
+    user: {},
+
 }
 
-export const usuariSlice = createSlice({
+export const goldenSlice = createSlice({
     name: 'golden',
     initialState, 
     reducers: {
@@ -24,13 +25,14 @@ export const usuariSlice = createSlice({
         },
         setGoldens: (state, action) => {
 
-            state.goldens = action.payload
+            state.goldens.push(action.payload)
 
             state.isLoading = false
-        },
-        setUsuari: (state, action) => {
 
-            state.usuari = action.payload
+        },
+        setUser: (state, action) => {
+
+            state.user = action.payload
 
             state.isLoading = false
         },
@@ -38,6 +40,6 @@ export const usuariSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingGoldens, setGoldens,setMissatge,setUsuari} = usuariSlice.actions
+export const { startLoadingGoldens, setGoldens,setMissatge,setUser} = goldenSlice.actions
 
-export default usuariSlice.reducer
+export default goldenSlice.reducer

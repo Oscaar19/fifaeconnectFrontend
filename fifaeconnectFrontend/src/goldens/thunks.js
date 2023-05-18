@@ -1,6 +1,6 @@
-import { startLoadingGoldens, setGoldens,setMissatge,setUsuari } from './usuariSlice'
+import { startLoadingGoldens, setGoldens,setMissatge,setUser} from './goldenSlice'
 
-export const getUsuari = (id) => {
+export const getUser = (id) => {
 
     return async (dispatch, getState) => {
         dispatch(startLoadingGoldens());
@@ -9,13 +9,15 @@ export const getUsuari = (id) => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+
             },
             method: "GET",
         })
 
         const resposta = await data.json();
+        console.log(resposta)
         if (resposta.success == true) {
-            dispatch(setUsuari(resposta.data));
+            dispatch(setGoldens(resposta.data));
         }
 
         else {
@@ -27,7 +29,7 @@ export const getUsuari = (id) => {
     };
 }
 
-export const getManagers = (page = 0,authToken) => {
+export const getGoldens = (authToken) => {
 
     return async (dispatch, getState) => {
 
@@ -57,14 +59,11 @@ export const getManagers = (page = 0,authToken) => {
  
         const resposta = await data.json();
 
-        const state = getState();
-        const goldens = state.usuaris.goldens;
-
         if (resposta.success == true) {
-            for (let i = 0; i < resposta.data.length; i++) {
-                text += cars[i] + "<br>";
-            }
-            dispatch(setGoldens(resposta.data));
+            console.log(resposta.data)
+            resposta.data.map((user) => (
+                dispatch(getUser(user.id_valorat))
+            ))
         }
 
         else {

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getFreeAgents } from '../thunks';
-import JugadorGrid from '../JugadorGrid';
 import { UserContext } from '../../userContext';
-import JugadorsSettings from '../JugadorsSettings';
+import ManagersSettings from '../ManagersSettings';
+import ManagerGrid from '../ManagerGrid';
 
-const JugadorsFaGrid = () => {
+const ManagersFaGrid = () => {
     let {authToken,setAuthToken} = useContext(UserContext)
-    const { freeAgents = [], isLoading=true, missatge=""} = useSelector((state) => state.jugadors);
+    const { freeAgents = [], isLoading=true, missatge=""} = useSelector((state) => state.managers);
 
     const dispatch = useDispatch();
 
@@ -19,15 +19,16 @@ const JugadorsFaGrid = () => {
         <>
             { isLoading ? (<div> Carregant ...</div>) : ( 
                 <div className="roster-container">
-                    <JugadorsSettings/>
+                    <ManagersSettings/>
                     <div className="roster-grid">
                         {freeAgents.length > 0 ? (
-                            freeAgents.map((jugador) => (
-                                <JugadorGrid key={jugador.id} jugador={jugador} />
+                            freeAgents.map((manager) => (
+                                <ManagerGrid key={manager.id} manager={manager} />
                             ))
                         ) : (
-                            <div className='d-flex justify-content-center'> <h1 className='estilo-h1'>No hi ha cap Jugador que sigui Free Agent.</h1></div>
+                            <div className='d-flex justify-content-center'> <h1 className='estilo-h1'>No hi ha cap Manager que sigui Free Agent.</h1></div>
                         )}
+                        
                     </div>
                 </div> 
             )}
@@ -35,4 +36,4 @@ const JugadorsFaGrid = () => {
     )
 }
 
-export default JugadorsFaGrid
+export default ManagersFaGrid

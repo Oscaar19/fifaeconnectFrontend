@@ -1,9 +1,9 @@
-import { startLoadingCoaches,setMissatge, setCoaches,setCoach,setFoto,setExperiencies,setXarxes,setGolden,setFreeAgents,clearCoaches} from './coachSlice'
+import { startLoadingJugadors,clearFreeAgents,setMissatge, setJugadors,setJugador,setFoto,setAssoliments,setXarxes,setGolden,setFreeAgents,clearJugadores} from './jugadorSlice'
 
 export const getUser = (id) => {
 
     return async (dispatch, getState) => {
-        dispatch(startLoadingCoaches());
+        dispatch(startLoadingJugadors());
 
         const data = await fetch("http://127.0.0.1:8000/api/users/" + id, {
             headers: {
@@ -15,10 +15,13 @@ export const getUser = (id) => {
         })
 
         const resposta = await data.json();
+        console.log(resposta)
         if (resposta.success == true) {
-            console.log(resposta)
             resposta.data.foto = resposta.foto
-            dispatch(setCoaches(resposta.data));
+            dispatch(setJugadors(resposta.data));
+            if(resposta.data.fa == 1){
+                dispatch(setFreeAgents(resposta.data))
+            }
         }
 
         else {
@@ -30,11 +33,11 @@ export const getUser = (id) => {
     };
 }
 
-export const getCoaches = () => {
+export const getJugadors = () => {
 
     return async (dispatch, getState) => {
 
-        dispatch(startLoadingCoaches());
+        dispatch(startLoadingJugadors());
 
         const headers = {
 
@@ -51,7 +54,7 @@ export const getCoaches = () => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/coaches";
+        let url ="http://127.0.0.1:8000/api/jugadors";
 
         
         const data = await fetch(url, headers);
@@ -60,7 +63,7 @@ export const getCoaches = () => {
 
         if (resposta.success == true) {
 
-            dispatch(clearCoaches())
+            dispatch(clearJugadores())
             resposta.data.map((user) => (
                 dispatch(getUser(user.id))
             ))
@@ -76,12 +79,12 @@ export const getCoaches = () => {
     };
 }
 
-export const addCoach = (formulari,authToken) => {
+export const addJugador = (formulari,authToken) => {
 
     return async (dispatch, getState) => {
 
 
-        let {twitter,linkedin,foto,fa,club_id,experiencies}=formulari;
+        let {twitter,linkedin,foto,fa,club_id,assoliments}=formulari;
 
 
         const formData = new FormData();
@@ -90,11 +93,11 @@ export const addCoach = (formulari,authToken) => {
         formData.append("foto", foto);
         formData.append("fa", fa);
         formData.append("club_id",club_id);
-        formData.append("experiencies",JSON.stringify(experiencies));        
+        formData.append("assoliments",JSON.stringify(assoliments));        
         
 
 
-        const data = await fetch("http://127.0.0.1:8000/api/coaches/",
+        const data = await fetch("http://127.0.0.1:8000/api/jugadors/",
 
             {
 
@@ -116,7 +119,7 @@ export const addCoach = (formulari,authToken) => {
 
         if (resposta.success == true) {
             dispatch(setMissatge("Coach afegit correctament."))
-            dispatch(getCoaches());
+            dispatch(getJugadors());
         }
 
         else {
@@ -127,12 +130,12 @@ export const addCoach = (formulari,authToken) => {
     };
 }
 
-export const getCoach = (authToken, id) => {
+export const getJugador = (authToken, id) => {
 
     return async (dispatch, getState) => {
-        dispatch(startLoadingCoaches());
+        dispatch(startLoadingJugadors());
 
-        const data = await fetch("http://127.0.0.1:8000/api/coaches/" + id, {
+        const data = await fetch("http://127.0.0.1:8000/api/jugadors/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -145,9 +148,9 @@ export const getCoach = (authToken, id) => {
         const resposta = await data.json();
         console.log(resposta)
         if (resposta.success == true) {
-            dispatch(setCoach(resposta.coach));
+            dispatch(setJugador(resposta.jugador));
             dispatch(setFoto(resposta.foto));
-            dispatch(setExperiencies(resposta.experiencies));
+            dispatch(setAssoliments(resposta.assoliments));
             dispatch(setXarxes(resposta.xarxes));
             dispatch(testGolden(authToken, id))
         }
@@ -183,12 +186,9 @@ export const testGolden = (authToken,id) => {
                 },
                 method: "DELETE",
             })
-            console.log("no estaba")
         }else{
-            console.log("ya estaba")
             dispatch(setGolden(true))
         }
-        console.log("Salgo del test")
     }
 }
 
@@ -234,7 +234,7 @@ export const getFreeAgents = (authToken) => {
 
     return async (dispatch, getState) => {
 
-        dispatch(startLoadingCoaches());
+        dispatch(startLoadingJugadors());
 
         const headers = {
 
@@ -253,15 +253,17 @@ export const getFreeAgents = (authToken) => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/coaches/freeagents";
+        let url ="http://127.0.0.1:8000/api/jugadors/freeagents";
 
         
         const data = await fetch(url, headers);
  
         const resposta = await data.json();
         if (resposta.success == true) {
-            console.log(resposta)
-            dispatch(setFreeAgents(resposta.data));
+            dispatch(clearFreeAgents())
+            resposta.data.map((user) => (
+                dispatch(getUser(user.id))
+            ))
         }
 
         else {

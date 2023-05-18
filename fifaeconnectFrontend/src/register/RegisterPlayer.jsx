@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../userContext';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { getClubs } from '../clubs/thunks';
+import { addJugador } from '../jugadors/thunks';
 
 const RegisterPlayer = () => {
 
-    let { authToken, setAuthToken } = useContext(UserContext);
+    let { authToken, setAuthToken,anys, setAnys } = useContext(UserContext);
 
     const dispatch = useDispatch();
 
@@ -13,104 +15,105 @@ const RegisterPlayer = () => {
 
     const { register, control, handleSubmit} = useForm({
         defaultValues: {
-          twitter: "",
-          linkedin: "",
-          titulos: [{ descripcio: "", any_finalitzacio: "" }]
+            twitter: "",
+            linkedin: "",
+            foto: "",
+            fa: "",
+            club_id: "",
+            assoliments: [{ descripcio: "", any: "" }]
         }
     });
 
-    const {fields,append} = useFieldArray({control,name: "titulos",rules: { maxLength: 4 }});
+    const {fields,append} = useFieldArray({control,name: "assoliments",rules: { maxLength: 4 }});
 
-    let { anys, setAnys } = useContext(UserContext);
     const [esAgenteLibre, setEsAgenteLibre] = useState(false);
-    const [club, setClub] = useState("");
-    const [anyInici, setAnyInici] = useState("");
-    const [anyFinal, setAnyFinal] = useState("");
-    const [trajectories, setTrajectories] = useState([{ club: "", anyInici: "", anyFinal: "" }]);
 
-    const clubes = ["Real Madrid", "Barcelona", "Atlético de Madrid", "Valencia"];
+    const { clubs = [], isLoading=true} = useSelector((state) => state.clubs);
 
-    const handleEsAgenteLibreChange = (event) => {
-        setEsAgenteLibre(event.target.value === "si");
+    const handleFaChange = (event) => {
+        setEsAgenteLibre(event.target.value === "1");
     };
 
-    const handleClubChange = (event) => {
-        setClub(event.target.value);
+    const afegir = data => {
+        console.log(data);
+        const data2 = { ...data, foto: data.foto[0]}
+        dispatch(addJugador(data2, authToken));
+        //navigate(-1)
     };
 
-    const handleAfegirTrajectoria = () => {
-        setTrajectories([...trajectories, { club: "", anyInici: "", anyFinal: "" }]);
-    };
-
-    const handleInputChange = (e, index) => {
-        const { name, value } = e.target;
-        const novaLlistaTrajectoria = [...trajectories];
-        novaLlistaTrajectoria[index][name] = value;
-        setTrajectories(novaLlistaTrajectoria);
-    };
+    useEffect(() => {
+        dispatch(getClubs());        
+    }, []);
 
     return (
         <>
-            <div className='form-container'>
+            { isLoading ? (<div> Carregant ...</div>) : ( 
+                <div className='form-container'>
                 <form className="register-form">
-                <div className='fa-container'>
-                    <label htmlFor="es-agente-libre">Busques club d'eSports?</label>
-                    <select id="es-agente-libre" onChange={handleEsAgenteLibreChange}>
-                        <option value="no">No</option>
-                        <option value="si">Sí</option>
+                    <div className='fa-container'>
+                    <label>Busques club d'eSports?</label>
+                    <select {...register(`fa`)} onChange={handleFaChange}>
+                        <option value="0">No</option>
+                        <option value="1">Sí</option>
                     </select>
-                </div>           
-
-                {esAgenteLibre ? null : (
+                    </div>
+                    {esAgenteLibre ? null : (
                     <div className='club-container'>
-                        <label htmlFor="club">Club al que pertanys:</label>
-                        <select id="club" value={club} onChange={handleClubChange}>
-                            {clubes.map((club) => (
-                            <option key={club} value={club}>
-                                {club}
-                            </option>
+                        <label>Club al que pertanys:</label>
+                        <select {...register(`club_id`)}>
+                            {clubs.map((club) => (
+                                <option key={club.id} value={club.id}>
+                                {club.nom}
+                                </option>
                             ))}
                         </select>
                     </div>
-                )}
-
-                <h3>Registra entre 1 y 4 clubs on has estat:</h3>
-                    {trajectories.map((trajectoria, index) => (
-                        <div className='trajectoria' key={index}>
-                            <label htmlFor="club">Club on vas estar:</label>
-                            <select id="club" value={trajectoria.club} onChange={(e) => handleInputChange(e, index)}>
-                                {clubes.map((club) => (
-                                <option key={club} value={club}>
-                                    {club}
-                                </option>
-                                ))}
-                            </select>
-                            <label htmlFor="anyInici">Any d'inici:</label>
-                            <select id="anyInici" value={trajectoria.anyInici} onChange={(e) => handleInputChange(e, index)}>
+                    )}
+                    <h3>Escriu assoliments que hagis aconseguit en competicions de FIFA:</h3>
+                    <div className='titulos-container'>
+                    {fields.map((item, index) => (
+                        <div className='titulacion' key={item.id}>
+                            <div className='titulo-container'>
+                                <label>Assoliment:</label>
+                                <input type="text" {...register(`assoliments.${index}.descripcio`)}/>
+                            </div>
+                            <div className='años-container'>
+                                <label>Any:</label>
+                                <select {...register(`assoliments.${index}.any`)}>
                                 {anys.map((any) => (
-                                <option key={any} value={any}>
-                                    {any}
-                                </option>
+                                    <option key={any} value={any}>
+                                        {any}
+                                    </option>
                                 ))}
                             </select>
-                            <label htmlFor="anyFinal">Any de sortida:</label>
-                            <select id="anyFinal" value={trajectoria.anyFinal} onChange={(e) => handleInputChange(e, index)}>
-                                {anys.map((any) => (
-                                <option key={any} value={any}>
-                                    {any}
-                                </option>
-                                ))}
-                            </select>
+                            </div>
                         </div>
-                    ))}
-
-                <div className='botonsRegistre'>
-                    <button className='botoRegistre' type="submit">REGISTRA'T COM A NOU JUGADOR</button>
-                    <button className='botoRegistre' type="button" onClick={handleAfegirTrajectoria}>AFEGIR ENTRADA</button>
+                    ))}                       
+                    </div> 
+                    <div className='xarxes_container'>
+                    <div>
+                        <h3>Escriu les teves xarxes socials i afegeix una foto teva. </h3>
+                    </div>
+                    <div >
+                        <input className='xarxa' type="text" placeholder="URL TWITTER" {...register("twitter")}/>
+                    </div>
+                    <br />
+                    <div>
+                        <input className='xarxa' type="text" placeholder="URL LINKEDIN" {...register("linkedin")}/>
+                    </div>
+                    <br />
+                    <div>
+                        <input className='xarxa' type="file" {...register("foto")}/>
+                    </div>
+                    </div> 
+                    <div className='botonsRegistre'>
+                        <button className='botoRegistre' type="submit"onClick={(e) => {e.preventDefault();append({ descripcio: "", any: ""})}}>AFEGEIX UNA ENTRADA</button>
+                        <button className='botoRegistre' type="submit"onClick={handleSubmit(afegir)}>REGISTRA'M</button>
+                    </div>   
+                </form>
                 </div>
-            </form>
-            </div>
-        </>
+            )}
+            </>
     )
 }
 

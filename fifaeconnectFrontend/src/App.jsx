@@ -17,11 +17,14 @@ import CoachesGrid from './coaches/CoachesGrid'
 import Coach from './coaches/Coach'
 import ManagersGrid from './managers/ManagersGrid'
 import Manager from './managers/Manager'
-import Profile from './auth/Profile'
 import RegisterManager from './register/RegisterManager'
 import RegisterPlayer from './register/RegisterPlayer'
 import RegisterCoach from './register/RegisterCoach';
+import RegisterClub from './register/RegisterClub';
+import GoldensGrid from './goldens/GoldensGrid';
 import JugadorsFaGrid from './jugadors/fa/JugadorsFaGrid';
+import CoachesFaGrid from './coaches/fa/CoachesFaGrid';
+import ManagersFaGrid from './managers/fa/ManagersFaGrid';
 
 function App() {
 
@@ -53,11 +56,14 @@ function App() {
             <Route path="/coaches/:id" element={ <Coach/> } />
             <Route path="/managers" element={<><Header/><ManagersGrid /></>}/>
             <Route path="/managers/:id" element={ <Manager/> } />
-            <Route path="/elmeuperfil" element={<Profile/>}/>
             <Route path="/registermanager" element={<><Header/><RegisterManager/></>}/>
             <Route path="/registerplayer" element={<><Header/><RegisterPlayer/></>}/>
             <Route path="/registercoach" element={<><Header/><RegisterCoach/></>}/>
-            <Route path="/jugadorsfa" element={<><Header/><JugadorsFaGrid/></>}/>
+            <Route path="/jugadors/freeagents" element={<><Header/><JugadorsFaGrid/></>}/>
+            <Route path="/coaches/freeagents" element={<><Header/><CoachesFaGrid/></>}/>
+            <Route path="/managers/freeagents" element={<><Header/><ManagersFaGrid/></>}/>
+            <Route path="/registerclub" element={<><Header/><RegisterClub/></>}/>
+            <Route path="/goldens" element={<><Header/><GoldensGrid/></>}/>
           </Routes>
         </> 
       ) : (

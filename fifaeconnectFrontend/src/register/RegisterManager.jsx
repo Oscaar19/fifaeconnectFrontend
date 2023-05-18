@@ -68,14 +68,15 @@ const RegisterManager = () => {
                         <div>
                             <input className='xarxa' type="text" placeholder="URL LINKEDIN" {...register("linkedin")}/>
                         </div>
+                        <br />
                         <div>
-                            <input type="file" {...register("foto")}/>
+                            <input className='xarxa' type="file" {...register("foto")}/>
                         </div>
                     </div>     
                     
                     <div className='botonsRegistre'>
                         <button className='botoRegistre' type="submit"onClick={(e) => {e.preventDefault();append({ descripcio: "", any_finalitzacio: "" })}}>AFEGEIX UNA ENTRADA</button>
-                        <button className='botoRegistre' type="submit"onClick={handleSubmit(afegir)}>REGISTRA'M COM A MANAGER</button>
+                        <button className='botoRegistre' type="submit"onClick={handleSubmit(afegir)}>REGISTRA'M</button>
                     </div>   
                 </form>
             </div>

@@ -4,13 +4,27 @@ import { UserContext } from "../userContext";
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-
-
-
-
 export default function Header() {
 
-  let { authToken, setAuthToken } = useContext(UserContext);
+  let { authToken, setAuthToken, usuari } = useContext(UserContext);
+  let [role, setRole] = useState("");
+
+    const getRoles = async (authToken) => {
+        const data = await fetch("http://127.0.0.1:8000/api/user", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer '  + authToken,
+            },
+            method: "GET",
+        });
+
+        const resposta = await data.json();
+        if (resposta.success === true) {
+            setRole(resposta.roles[0])
+        }
+
+  }
 
   function toggleNavList() {
     const menu = document.querySelector('.menu');
@@ -38,6 +52,10 @@ export default function Header() {
     }
     
   };
+
+    useEffect(() => {
+        getRoles(authToken)
+    }, []);
     
 
   return (
@@ -57,11 +75,32 @@ export default function Header() {
                     <div className="dropdown">
                         <button className="buttons"><i className="bi bi-person-circle"></i></button>
                         <div className="dropdown-content">
-                            <Link to={"/elmeuperfil"}>El meu perfil</Link>
-                            <a><button id="logoutButton" onClick={(e) => {
-                                    sendLogout(e);
-                                }}>Logout
-                            </button></a>
+                            {role === 'manager' ? (
+                                <>
+                                    <Link to={"/registerplayer"}>Registra'm com a jugador</Link>
+                                    <Link to={"/registercoach"}>Registra'm com a coach</Link>
+                                    <Link to={"/registermanager"}>Registra'm com a manager</Link>
+                                    <Link to={"/registerclub"}>Registra un club d'eSports</Link>
+        
+                                    <a><button id="logoutButton" onClick={(e) => {
+                                            sendLogout(e);
+                                        }}>Logout
+                                    </button></a>
+                                </>
+                                
+                            ) : (
+                                <>
+                                    <Link to={"/registerplayer"}>Registra'm com a jugador</Link>
+                                    <Link to={"/registercoach"}>Registra'm com a coach</Link>
+                                    <Link to={"/registermanager"}>Registra'm com a manager</Link>
+        
+                                    <a><button id="logoutButton" onClick={(e) => {
+                                            sendLogout(e);
+                                        }}>Logout
+                                    </button></a>
+                                </>
+                            )}
+                            
                             
                         </div>
                     </div>                   

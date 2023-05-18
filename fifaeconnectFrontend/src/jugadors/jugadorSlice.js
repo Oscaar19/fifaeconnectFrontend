@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    coaches: [],
-    coach:{ 
+    jugadors: [],
+    jugador:{ 
         nom: "",
         cognom: "",
         email: "",
@@ -12,7 +12,7 @@ const initialState = {
         club_id: { id:""},
     }, 
     foto: {},
-    experiencies: [],
+    assoliments: [],
     xarxes: {
         twitter: "",
         linkedin: "",
@@ -23,11 +23,11 @@ const initialState = {
     freeAgents: [],
 }
 
-export const coachSlice = createSlice({
-    name: 'coach',
+export const jugadorSlice = createSlice({
+    name: 'jugador',
     initialState, 
     reducers: {
-        startLoadingCoaches: (state) => {
+        startLoadingJugadors: (state) => {
 
             state.isLoading = true;
 
@@ -38,15 +38,24 @@ export const coachSlice = createSlice({
             state.missatge = action.payload
 
         },
-        setCoaches: (state, action) => {
+        setJugadors: (state, action) => {
 
-            state.coaches.push(action.payload)
+            state.jugadors.push(action.payload)
 
             state.isLoading = false
-        },
-        setCoach: (state, action) => {
 
-            state.coach = action.payload
+        },
+        clearJugadores: (state,action) => {
+            state.jugadors=[]
+
+        },
+        clearFreeAgents: (state,action) => {
+            state.freeAgents=[]
+
+        },
+        setJugador: (state, action) => {
+
+            state.jugador = action.payload
 
             state.isLoading = false
         },
@@ -56,9 +65,9 @@ export const coachSlice = createSlice({
 
             state.isLoading = false
         },
-        setExperiencies: (state, action) => {
+        setAssoliments: (state, action) => {
 
-            state.experiencies = action.payload
+            state.assoliments = action.payload
 
             state.isLoading = false
         },
@@ -76,18 +85,14 @@ export const coachSlice = createSlice({
         },
         setFreeAgents: (state, action) => {
 
-            state.freeAgents = action.payload
+            state.freeAgents.push(action.payload)
 
             state.isLoading = false
-        },
-        clearCoaches: (state,action) => {
-            state.coaches=[]
-
         },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingCoaches,setMissatge, setCoaches,setCoach,setFoto,setExperiencies,setXarxes,setGolden,setFreeAgents,clearCoaches} = coachSlice.actions
+export const { startLoadingJugadors,setMissatge, setJugadors,setJugador,setFoto,setAssoliments,setXarxes,setGolden,setFreeAgents,clearJugadores,clearFreeAgents} = jugadorSlice.actions
 
-export default coachSlice.reducer
+export default jugadorSlice.reducer

@@ -1,26 +1,34 @@
-import React from 'react'
-import SettingsMenu from '../layout/SettingsMenu';
+import React, { useContext, useEffect } from 'react'
 import CoachGrid from './CoachGrid';
+import { UserContext } from '../userContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCoaches } from './thunks';
+import CoachesSettings from './CoachesSettings';
 
 const CoachesGrid = () => {
 
-    const coaches = [
-        { id: 1, nombre: 'Coach 1', foto: './src/jugadors/aaa.jpg', info: 'Información del coach 1 aquí' },
-        { id: 2, nombre: 'Coach 2', foto: './src/jugadors/aaa.jpg', info: 'Información del coach 2 aquí' },
-        { id: 3, nombre: 'Coach 3', foto: './src/jugadors/aaa.jpg', info: 'Información del coach 3 aquí' },
-        { id: 4, nombre: 'Coach 3', foto: './src/jugadors/aaa.jpg', info: 'Información del coach 3 aquí' },
-        { id: 5, nombre: 'Coach 3', foto: './src/jugadors/aaa.jpg', info: 'Información del coach 3 aquí' },
-    ];
+    let {authToken,setAuthToken} = useContext(UserContext)
+    const { coaches = [], isLoading=true, missatge=""} = useSelector((state) => state.coaches);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCoaches()); 
+    }, []);
 
     return (
-        <div className="roster-container">
-            <SettingsMenu/>
-            <div className="roster-grid">
-                {coaches.map((coach) => (
-                <CoachGrid key={coach.id} coach={coach} />
-                ))}
-            </div>
-        </div>
+        <>
+            { isLoading ? (<div> Carregant ...</div>) : (
+                <div className="roster-container">
+                    <CoachesSettings/>
+                    <div className="roster-grid">
+                        {coaches.map((coach) => (
+                            <CoachGrid key={coach.id} coach={coach} />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 

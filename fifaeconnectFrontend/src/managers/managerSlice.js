@@ -11,7 +11,7 @@ const initialState = {
         fa: "",
         club_id: { id:""},
     }, 
-    foto: "",
+    foto: {},
     titulacions: [],
     xarxes: {
         twitter: "",
@@ -21,7 +21,7 @@ const initialState = {
     isLoading: true,
     missatge: "",
     adding: false,
-    golden: false,
+    freeAgents: [],
 }
 
 export const managerSlice = createSlice({
@@ -41,7 +41,7 @@ export const managerSlice = createSlice({
         },
         setManagers: (state, action) => {
 
-            state.managers = action.payload
+            state.managers.push(action.payload)
 
             state.isLoading = false
         },
@@ -79,16 +79,25 @@ export const managerSlice = createSlice({
             state.adding = true
 
         },
-        setGolden: (state,action) => {
 
-            state.golden = action.payload
-            state.isLoading=false
+        setFreeAgents: (state, action) => {
+
+            state.freeAgents.push(action.payload)
+
+            state.isLoading = false
+        },
+
+        clearManagers: (state,action) => {
+            state.managers=[]
+        },
+        clearFreeAgents: (state,action) => {
+            state.freeAgents=[]
 
         },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setAdding,setGolden} = managerSlice.actions
+export const { startLoadingManagers, setManagers,setMissatge,setManager,setFoto,setTitulacions,setXarxes,setPage,setAdding,setFreeAgents,clearManagers,clearFreeAgents} = managerSlice.actions
 
 export default managerSlice.reducer

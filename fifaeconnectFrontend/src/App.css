@@ -12,6 +12,14 @@ header {
   color: #ffffff;
 }
 
+a{
+  color: #F5F1ED !important;
+}
+
+.estilo-h1{
+  font-family: 'Archivo Black', sans-serif;
+}
+
 #logoPng{
   width: 15%;
   height: 100%;
@@ -69,19 +77,32 @@ nav {
 
 }
 
+.club.name{
+  display: flex;
+  justify-content: center;
+}
+
 .club-card{
   background-color: #333533;
   border-radius: 10px;
   border: 2px solid #252323;
   color: #ffffff;
   font-family: 'Archivo Black', sans-serif;
-  height: 30vh;
-  width: 30vh;
+  height: 20vw;
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: 0;
+}
+
+.club-card h2{
+  font-size: 2vw;
+}
+
+.club-card div{
+  height: 80%;
 }
 
 
@@ -161,7 +182,9 @@ nav {
   cursor: pointer;
   text-decoration: none;
   height: 20vh;
+  width: 5vw;
 }
+
 
 .jugador-container {
   display: flex;
@@ -282,7 +305,7 @@ nav {
 
 .roster-info ul li{
   margin-top: 2%;
-  font-size: 0.8vw;
+  font-size: 1.8vw;
 }
 
 .botones{
@@ -310,8 +333,8 @@ nav {
 }
 
 .club-logo {
-  width: 100%;
-  max-width: 10rem;
+  width: 90%;
+  height: 70%;
 }
 
 
@@ -347,11 +370,7 @@ nav {
   object-fit: contain;
 }
 
-.club-name {
-  width: 65%;
-  height: 30%;
-  font-size: 4vh;
-}
+
 
 .club-content {
   padding: 2rem;
@@ -410,14 +429,14 @@ nav {
   
 }
 
-.link-jugadores{
+.link-jugadores li{
   text-decoration: dotted;
   font-weight: bold;
   color: black;
   margin-top: 7%;
 }
 
-.link-jugadores:hover{
+.link-jugadores li:hover{
   text-decoration: dotted;
   color: #70798C;
 }
@@ -437,6 +456,9 @@ nav {
   position: absolute;
   z-index: 1;
   background-color: #252323;
+  font-size: 0.8vw;
+  font-family: 'Archivo', sans-serif;
+  width: 10vw;
 }
 
 #logoutButton{
@@ -461,7 +483,7 @@ nav {
 
 .dropdown-content a:hover{
   background-color: #F5F1ED;
-  color: #252323;
+  color: #252323 !important;
 }
 
 .dropdown:hover .dropdown-content {
@@ -506,13 +528,27 @@ nav {
   border-radius: 10px;
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 50px #000000;
-  padding: 50px 35px;
-  
+  padding: 50px 35px; 
 }
 
+.club-register-form {
+  height: 33vw;
+  width: 70%;
+  background-color: #70798C;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 50px #000000;
+  padding: 50px 35px; 
+}
 .xarxa::placeholder{
-  color:#F5F1ED;
+  color:#999;
   font-size: 1.5vw;
+}
+
+.xarxa{
+  background-color:#F5F1ED;
 }
 
 form *{
@@ -527,6 +563,7 @@ form h3{
   text-align: center;
   font-size: 1.7vw;
 }
+
 
 label{
   display: block;
@@ -550,10 +587,23 @@ button {
   margin-top: 1rem;
 }
 
+.club-info-container{
+  margin-top: 8%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.club-info-container input{
+  height: 3.1vw;
+  margin-bottom: 5%;
+  background-color: #F5F1ED;
+}
+
 @media (max-width: 600px) {
   .register-form {
     max-width: 100%;
     padding: 0 1rem;
+    height: 150vw;
   }
 }
 
@@ -572,14 +622,18 @@ button {
 
 .titulacion{
   width: 100%;
-  height: 15%;
+  height: 35%;
   display: flex;
   margin-bottom: 3%;
 }
 
 .titulo-container{
   height: 100%;
-  width: 70%;
+  width: 60%;
+}
+
+.titulo-container input, .años-container input{
+  background-color: #F5F1ED;
 }
 
 .años-container{
@@ -587,6 +641,8 @@ button {
   margin-left: 5%;
   height: 100%;
   width: 20%;
+  display: flex;
+  flex-direction: column;
 }
 
 .botonsRegistre{
@@ -619,14 +675,15 @@ button {
 }
 
 .fa-container{
-  width: 50%;
+  margin-top: 2%;
+  width: 80%;
   height: 10%;
 
 
 }
 
 .club-container{
-  width: 50%;
+  width: 80%;
   height: 10%;
 }
 
@@ -650,6 +707,15 @@ button {
   font-size: 7vw;
 }
 
+.buttons > .bi-star-fill{
+  font-size: 7vw;
+}
+
+.bi-star-fill{
+  color: #252323;
+  font-size: 3vw;
+}
+
 .form-container{
   width: 100%;
   height: 90vw;
@@ -657,6 +723,16 @@ button {
   justify-content: center;
   margin-top: 3%;
 }
+
+.club-form-container{
+  width: 100%;
+  height: 30vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+
 
 .auth-container{
   width: 100%;
@@ -736,15 +812,39 @@ button {
   color: #000000;
 }
 
-.faOption{
-  width: 20vw;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1vw;
-}
+
 
 @media only screen and ( max-width:800px){
 
 
+  .form-container{
+    width: 100%;
+    height: 200vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+  }
+
+  .input-container input{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    align-self: center;
+    margin-bottom: 5%;
+    height: 5vw;
+    font-size: 4vw;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #252323;
+    font-size: 2vw;
+    font-family: 'Archivo', sans-serif;
+    width: 28vw;
+  }
   .faOption{
     width: 28vw;
     font-family: 'Archivo', sans-serif;
@@ -834,6 +934,7 @@ button {
 
   .tarjeta-staff{
     margin-right: 0;
+    width: 5vw;
   }
 
   .roster-page{
@@ -842,6 +943,10 @@ button {
     background-color: #DAD2BC;
     display: flex;
     justify-content: center;
+  }
+
+  .roster-page h1{
+    font-size: 8vw;
   }
   
   .roster-nombre{
@@ -884,19 +989,21 @@ button {
     justify-content: center;
     color: #DAD2BC;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 3vw;
+    font-size: 5vw;
     margin-top: 1%;
   }
   
   .roster-redes-sociales ul{
     list-style: none;
+    margin: 0;
   }
   
   .roster-redes-sociales ul li{
     color: white;
     font-family: 'Archivo', sans-serif;
-    margin-top: 2%;
-    font-size: 2.2vw;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    font-size: 2.6vw;
   }
   
   .roster-info{
@@ -914,17 +1021,29 @@ button {
     color: #F5F1ED;
     font-family: 'Archivo Black', sans-serif;
     margin-top: 3%;
-    font-size: 4vw;
+    font-size: 4.5vw;
   }
   
   .roster-info ul li{
     margin-top: 2%;
-    font-size: 2vw;
+    font-size: 3vw;
+  }
+
+  .clubs-grid {
+    margin-top: 2%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 4fr));
+    grid-gap: 5vw;
+    width: 90%;
   }
 
   .tarjeta-club{
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 20vw;
   }
 
   .club-header{
@@ -965,6 +1084,153 @@ button {
   .lista-roster ul li{
     font-family: 'Archivo', sans-serif;
     font-size: 3vw;
+  }
+
+  .club-card{
+    background-color: #333533;
+    border-radius: 10px;
+    border: 2px solid #252323;
+    color: #ffffff;
+    font-family: 'Archivo Black', sans-serif;
+    height: 20vw;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  .club-card h2{
+    font-size: 2vw;
+  }
+  
+  .club-card div{
+    height: 80%;
+  }
+
+  .fa-container label, .club-container label{
+    margin-right: 2%;
+    font-size: 3.5vw;
+  }
+  
+  .fa-container{
+    width: 80%;
+    height: 10%;
+  
+  
+  }
+  
+  .club-container{
+    width: 80%;
+    height: 10%;
+  }
+
+  form h3{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 4vw;
+    margin-top: 2%;
+  }
+
+  .titulo-container label{
+    font-size: 3.5vw;
+  }
+
+  .titulo-container input{
+    background-color: #F5F1ED;
+    height: 4vw;
+  }
+
+  .titulos-container{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+  
+  }
+
+  .años-container label{
+    font-size: 2.5vw;
+  }
+
+  .años-container select{
+    height: 4vw;
+  }
+
+  .botonsRegistre button{
+    width: 35vw;
+    height: 10vw;
+    font-size: 2.2vw;
+  }
+
+  .xarxes_container{
+    height: 50vw;
+  }
+
+  .xarxes_container div input{
+    height: 6vw;
+  }
+
+  .xarxa{
+    height: 4vw;
+  }
+
+  .xarxa::placeholder{
+    font-size: 3vw;
+  }
+
+  .titulacion{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    margin-bottom: 3%;
+  }
+
+  .bi-star-fill{
+    color: #252323;
+    font-size: 6vw;
+  }
+
+  .club-form-container{
+    width: 100%;
+    height: 120vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+  }
+
+  .club-form-container .botonsRegistre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+  }
+
+  .club-register-form {
+    height: 70vw;
+    width: 70%;
+    background-color: #70798C;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px #000000;
+    padding: 8px 8px; 
+  }
+
+  .info-container{
+    width: 100%;
+    height: 15vw;
+  }
+
+  .club-info-container input{
+    font-size: 3vw;
+    height: 5.5vw;
+    margin-bottom: 5%;
+    background-color: #F5F1ED;
   }
 }
 
