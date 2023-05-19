@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CoachGrid = ({coach}) => {
-    console.log(coach)
     return (
         <Link className="tarjeta-staff" to={"/coaches/"+coach.id}>
             <div className="staff-grid">

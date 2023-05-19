@@ -16,7 +16,6 @@ export const getUser = (id) => {
 
         const resposta = await data.json();
         if (resposta.success == true) {
-            console.log(resposta)
             resposta.data.foto = resposta.foto
             dispatch(setCoaches(resposta.data));
         }
@@ -143,7 +142,6 @@ export const getCoach = (authToken, id) => {
         })
 
         const resposta = await data.json();
-        console.log(resposta)
         if (resposta.success == true) {
             dispatch(setCoach(resposta.coach));
             dispatch(setFoto(resposta.foto));
@@ -183,12 +181,9 @@ export const testGolden = (authToken,id) => {
                 },
                 method: "DELETE",
             })
-            console.log("no estaba")
         }else{
-            console.log("ya estaba")
             dispatch(setGolden(true))
         }
-        console.log("Salgo del test")
     }
 }
 
@@ -260,7 +255,6 @@ export const getFreeAgents = (authToken) => {
  
         const resposta = await data.json();
         if (resposta.success == true) {
-            console.log(resposta)
             dispatch(setFreeAgents(resposta.data));
         }
 

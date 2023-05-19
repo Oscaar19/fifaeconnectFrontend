@@ -15,7 +15,6 @@ export const getUser = (id) => {
         })
 
         const resposta = await data.json();
-        console.log(resposta)
         if (resposta.success == true) {
             resposta.data.foto = resposta.foto
             dispatch(setJugadors(resposta.data));
@@ -146,7 +145,6 @@ export const getJugador = (authToken, id) => {
         })
 
         const resposta = await data.json();
-        console.log(resposta)
         if (resposta.success == true) {
             dispatch(setJugador(resposta.jugador));
             dispatch(setFoto(resposta.foto));

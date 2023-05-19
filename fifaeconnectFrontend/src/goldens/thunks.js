@@ -15,7 +15,6 @@ export const getUser = (id) => {
         })
 
         const resposta = await data.json();
-        console.log(resposta)
         if (resposta.success == true) {
             resposta.data.foto = resposta.foto
             dispatch(setGoldens(resposta.data));

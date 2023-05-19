@@ -145,7 +145,6 @@ export const getManager = (authToken, id) => {
         })
 
         const resposta = await data.json();
-        console.log(resposta)
         if (resposta.success == true) {
             dispatch(setManager(resposta.manager));
             dispatch(setFoto(resposta.foto));

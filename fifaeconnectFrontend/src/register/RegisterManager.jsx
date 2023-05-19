@@ -23,7 +23,6 @@ const RegisterManager = () => {
     });
 
     const afegir = data => {
-        console.log(data);
         const data2 = { ...data, foto: data.foto[0]}
         dispatch(addManager(data2, authToken));
         //navigate(-1)

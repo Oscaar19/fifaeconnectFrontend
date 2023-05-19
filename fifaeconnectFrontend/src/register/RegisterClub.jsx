@@ -20,7 +20,6 @@ const RegisterClub = () => {
     });
 
     const afegir = data => {
-        console.log(data);
         const data2 = { ...data, foto: data.foto[0]}
         dispatch(addClub(data2, authToken));
         navigate("/clubs");

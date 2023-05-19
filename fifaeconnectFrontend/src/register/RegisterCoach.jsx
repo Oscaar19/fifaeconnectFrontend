@@ -27,7 +27,6 @@ const RegisterCoach = () => {
   const {fields,append} = useFieldArray({control,name: "experiencies",rules: { maxLength: 4 }});
 
   const afegir = data => {
-    console.log(data)
     const data2 = { ...data, foto: data.foto[0]}
     dispatch(addCoach(data2, authToken));
     //navigate(-1)

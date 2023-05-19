@@ -45,7 +45,7 @@ export default function Header() {
         });
         const resposta = await data.json();
         if (resposta.success === true) setAuthToken("")
-        else console.log("N logout")
+        else console.log("Error Logout")
     }catch{
         console.log(data);
         alert("Se ha producido un error.")

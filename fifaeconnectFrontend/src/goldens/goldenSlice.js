@@ -29,7 +29,6 @@ export const goldenSlice = createSlice({
 
             state.isLoading = false
 
-            console.log(state.goldens)
 
         },
         setUser: (state, action) => {
