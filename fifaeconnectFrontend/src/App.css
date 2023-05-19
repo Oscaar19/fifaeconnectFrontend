@@ -793,7 +793,7 @@ button {
   border-bottom: 1px solid black;
   outline: none;
   align-self: center;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .input-container{
@@ -802,6 +802,13 @@ button {
   display: flex;
   flex-direction: column;
   margin-top: 10%;
+}
+
+.input-container p{
+  color: red;
+  font-family: 'Archivo', sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
 .buttons-container{

@@ -46,15 +46,20 @@ export default function Register({ setCanvi }) {
         <div className="input-container">
           <input type="text" placeholder="NOM" {...register("nom",{
                                         required: "Aquest camp és obligatori",
+                                        maxLength: {value: 10,message: "Introdueix un nom mes curt."},
+                                        pattern:{value:/^[^0-9]*$/,message: "El nom no pot contenir numeros."}
                                       })}/>
           {errors.nom && <p>{errors.nom.message}</p>}
           <input type="text" placeholder="COGNOM" {...register("cognom",{
                                         required: "Aquest camp és obligatori",
+                                        maxLength: {value: 15,message: "Introdueix un nom mes curt."},
+                                        pattern:{value:/^[^0-9]*$/,message: "El cognom no pot contenir numeros."}
                                       })}/>
           {errors.cognom && <p>{errors.cognom.message}</p>}
 
-          <input type="email" placeholder="EMAIL" {...register("email",{
+          <input type="email" placeholder="GMAIL" {...register("email",{
                                                       required: "Aquest camp és obligatori",
+                                                      pattern:{value:/^[A-Za-z0-9._%+-]+@gmail\.com$/,message: "El compte de mail ha de ser @gmail.com."}
                                                     })}/>
           {errors.email && <p>{errors.email.message}</p>}
           <input  type="password" placeholder="CONTRASENYA" {...register("password",{
@@ -65,7 +70,6 @@ export default function Register({ setCanvi }) {
                                                                   required: "Aquest camp és obligatori",
                                                                 })}/>
           {errors.password2 && <p>{errors.password2.message}</p>}
-          {missatge ? <div>{missatge}</div> : <></>}
           <br />
         </div>
         <div className="buttons-container">
