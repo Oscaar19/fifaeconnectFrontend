@@ -21,7 +21,7 @@ const CoachesGrid = () => {
             { isLoading ? (<div> Carregant ...</div>) : (
                 <div className="roster-container">
                     <CoachesSettings/>
-                    <div className="roster-grid">
+                    <div className="roster-grid-">
                         {coaches.map((coach) => (
                             <CoachGrid key={coach.id} coach={coach} />
                         ))}

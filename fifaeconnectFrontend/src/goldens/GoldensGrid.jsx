@@ -17,7 +17,7 @@ const GoldensGrid = () => {
         <>
             { isLoading ? (<div> Carregant ...</div>) : (
                 <div className="roster-container">
-                    <div className="roster-grid">
+                    <div className="roster-grid-golden">
                         {goldens.map((golden) => (
                             <GoldenGrid key={golden.id} golden={golden}/>
                         ))}

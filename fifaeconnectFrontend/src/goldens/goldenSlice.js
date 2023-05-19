@@ -29,6 +29,8 @@ export const goldenSlice = createSlice({
 
             state.isLoading = false
 
+            console.log(state.goldens)
+
         },
         setUser: (state, action) => {
 
@@ -36,10 +38,13 @@ export const goldenSlice = createSlice({
 
             state.isLoading = false
         },
+        clearGoldens: (state,action) => {
+            state.goldens=[]
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingGoldens, setGoldens,setMissatge,setUser} = goldenSlice.actions
+export const { startLoadingGoldens, setGoldens,setMissatge,setUser,clearGoldens} = goldenSlice.actions
 
 export default goldenSlice.reducer

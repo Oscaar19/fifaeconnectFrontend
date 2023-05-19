@@ -1,4 +1,4 @@
-import { startLoadingGoldens, setGoldens,setMissatge,setUser} from './goldenSlice'
+import { startLoadingGoldens, setGoldens,setMissatge,setUser,clearGoldens} from './goldenSlice'
 
 export const getUser = (id) => {
 
@@ -17,6 +17,7 @@ export const getUser = (id) => {
         const resposta = await data.json();
         console.log(resposta)
         if (resposta.success == true) {
+            resposta.data.foto = resposta.foto
             dispatch(setGoldens(resposta.data));
         }
 
@@ -60,7 +61,7 @@ export const getGoldens = (authToken) => {
         const resposta = await data.json();
 
         if (resposta.success == true) {
-            console.log(resposta.data)
+            dispatch(clearGoldens())
             resposta.data.map((user) => (
                 dispatch(getUser(user.id_valorat))
             ))

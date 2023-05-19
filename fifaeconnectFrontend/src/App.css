@@ -130,6 +130,15 @@ nav {
   margin-left: 4%;
 }
 
+.roster-grid-golden {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+  grid-gap: 15vh;
+  width: 90%;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+
 
 
 .settings-menu {
@@ -931,6 +940,8 @@ button {
     width: 90%;
     margin-left: 10%;
   }
+
+  
 
   .tarjeta-staff{
     margin-right: 0;
