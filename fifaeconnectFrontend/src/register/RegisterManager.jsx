@@ -11,7 +11,7 @@ const RegisterManager = () => {
 
     const dispatch = useDispatch();
 
-    // let navigate = useNavigate()
+    let navigate = useNavigate()
 
     const { register, control, handleSubmit} = useForm({
         defaultValues: {
@@ -25,7 +25,7 @@ const RegisterManager = () => {
     const afegir = data => {
         const data2 = { ...data, foto: data.foto[0]}
         dispatch(addManager(data2, authToken));
-        //navigate(-1)
+        navigate("/managers");
     };
 
     const {fields,append} = useFieldArray({control,name: "titulacions",rules: { maxLength: 4 }});

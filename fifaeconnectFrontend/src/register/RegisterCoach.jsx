@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { addCoach } from '../coaches/thunks';
 import { getClubs } from '../clubs/thunks';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterCoach = () => {
 
@@ -11,7 +12,7 @@ const RegisterCoach = () => {
 
   const dispatch = useDispatch();
 
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
 
   const { register, control, handleSubmit} = useForm({
       defaultValues: {
@@ -29,7 +30,7 @@ const RegisterCoach = () => {
   const afegir = data => {
     const data2 = { ...data, foto: data.foto[0]}
     dispatch(addCoach(data2, authToken));
-    //navigate(-1)
+    navigate("/coaches");
   };
 
   const [esAgenteLibre, setEsAgenteLibre] = useState(false);

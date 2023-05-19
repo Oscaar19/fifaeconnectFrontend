@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { getClubs } from '../clubs/thunks';
 import { addJugador } from '../jugadors/thunks';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPlayer = () => {
 
@@ -11,7 +12,7 @@ const RegisterPlayer = () => {
 
     const dispatch = useDispatch();
 
-    // let navigate = useNavigate()
+    let navigate = useNavigate()
 
     const { register, control, handleSubmit} = useForm({
         defaultValues: {
@@ -37,7 +38,7 @@ const RegisterPlayer = () => {
     const afegir = data => {
         const data2 = { ...data, foto: data.foto[0]}
         dispatch(addJugador(data2, authToken));
-        //navigate(-1)
+        navigate("/jugadors");
     };
 
     useEffect(() => {
