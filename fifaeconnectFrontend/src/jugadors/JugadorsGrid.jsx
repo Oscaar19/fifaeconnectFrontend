@@ -22,9 +22,13 @@ function JugadorsGrid() {
         <div className="roster-container">
             <JugadorsSettings/>
             <div className="roster-grid">
-              {jugadors.map((jugador) => (
-                <JugadorGrid key={jugador.id} jugador={jugador} />
-              ))}
+              {jugadors.length > 0 ? (
+                jugadors.map((jugador) => (
+                  <JugadorGrid key={jugador.id} jugador={jugador} />
+                ))
+              ) : (
+                <div className='d-flex justify-content-center'> <h5>Encara no tenim cap jugador registrat!</h5></div>
+              )}              
             </div>
         </div>
       )}

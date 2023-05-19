@@ -22,9 +22,14 @@ const ManagersGrid = () => {
                 <div className="roster-container">
                     <ManagersSettings/>
                     <div className="roster-grid">
-                        {managers.map((manager) => (
-                            <ManagerGrid key={manager.id} manager={manager} />
-                        ))}
+                        {managers.length > 0 ? (
+                            managers.map((manager) => (
+                                <ManagerGrid key={manager.id} manager={manager} />
+                            ))
+                        ) : (
+                            <div className='d-flex justify-content-center'> <h5>Encara no tenim cap manager registrat!</h5></div>
+                        )} 
+                        
                     </div>
                 </div> 
             )}

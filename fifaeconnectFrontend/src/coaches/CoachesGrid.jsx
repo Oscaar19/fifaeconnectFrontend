@@ -21,10 +21,15 @@ const CoachesGrid = () => {
             { isLoading ? (<div> Carregant ...</div>) : (
                 <div className="roster-container">
                     <CoachesSettings/>
-                    <div className="roster-grid-">
-                        {coaches.map((coach) => (
-                            <CoachGrid key={coach.id} coach={coach} />
-                        ))}
+                    <div className="roster-grid">
+                        {coaches.length > 0 ? (
+                            coaches.map((coach) => (
+                                <CoachGrid key={coach.id} coach={coach} />
+                            ))
+                        ) : (
+                            <div className='d-flex justify-content-center'> <h5>Encara no tenim cap Coach registrat!</h5></div>
+                        )}
+                        
                     </div>
                 </div>
             )}
