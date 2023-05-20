@@ -35,9 +35,14 @@ const RegisterClub = () => {
                       
 
                     <div className='club-info-container'>
-                        <input type="text" {...register("nom")} placeholder='NOM DEL CLUB' />
+                        <input type="text" {...register("nom",{
+                                        required: "Aquest camp és obligatori",
+                                        maxLength: {value: 15,message: "Introdueix un nom mes curt."},
+                                      })} placeholder='NOM DEL CLUB' />
             
-                        <input type="file" {...register("foto")}/>
+                        <input type="file" {...register("foto",{
+                                        required: "Aquest camp és obligatori",
+                                      })}/>
                     </div>     
                     
                     <div className='botonsRegistre'>
