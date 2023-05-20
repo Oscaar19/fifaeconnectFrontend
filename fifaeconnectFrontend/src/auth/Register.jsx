@@ -64,10 +64,14 @@ export default function Register({ setCanvi }) {
           {errors.email && <p>{errors.email.message}</p>}
           <input  type="password" placeholder="CONTRASENYA" {...register("password",{
                                                             required: "Aquest camp és obligatori",
+                                                            minLength: {value: 8,message: "La contrasenya ha de tenir mínim 8 caràcters"},
+                                                            pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,message: "La contrasenya ha de tenir una minúscula, majúscula i número."}
                                                           })}/>
           {errors.password && <p>{errors.password.message}</p>}
           <input type="password" placeholder="CONFIRMA CONTRASENYA" {...register("password2",{
                                                                   required: "Aquest camp és obligatori",
+                                                                  minLength: {value: 8,message: "La contrasenya ha de tenir mínim 8 caràcters"},
+                                                                  pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,message: "La contrasenya ha de tenir una minúscula, majúscula i número."}
                                                                 })}/>
           {errors.password2 && <p>{errors.password2.message}</p>}
           <br />
