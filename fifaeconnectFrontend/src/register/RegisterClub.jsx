@@ -39,10 +39,11 @@ const RegisterClub = () => {
                                         required: "Aquest camp és obligatori",
                                         maxLength: {value: 15,message: "Introdueix un nom mes curt."},
                                       })} placeholder='NOM DEL CLUB' />
-            
+                        {errors.nom && <p>{errors.nom.message}</p>}
                         <input type="file" {...register("foto",{
                                         required: "Aquest camp és obligatori",
                                       })}/>
+                        {errors.foto && <p>{errors.foto.message}</p>}
                     </div>     
                     
                     <div className='botonsRegistre'>

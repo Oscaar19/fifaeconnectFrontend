@@ -86,15 +86,25 @@ const RegisterCoach = () => {
                 <h3>Escriu les teves xarxes socials i afegeix una foto teva. </h3>
               </div>
               <div >
-                <input className='xarxa' type="text" placeholder="URL TWITTER" {...register("twitter")}/>
+                <input className='xarxa' type="text" placeholder="URL TWITTER" {...register("twitter",{
+                                        required: "Aquest camp és obligatori",
+                                        pattern:{value:/^(https?:\/\/)?(www\.)?twitter\.com\/([a-zA-Z0-9_]){1,15}\/?$/,message: "Introdueix una url de twitter vàlida."}
+                                      })}/>
+                {errors.twitter && <p>{errors.twitter.message}</p>}
               </div>
               <br />
               <div>
-                <input className='xarxa' type="text" placeholder="URL LINKEDIN" {...register("linkedin")}/>
+                <input className='xarxa' type="text" placeholder="URL LINKEDIN" {...register("linkedin",{
+                                        required: "Aquest camp és obligatori",
+                                        pattern:{value:/^(https?:\/\/)?(www\.)?linkedin\.com\/in\/([a-zA-Z0-9_-]){1,30}\/?$/,message: "Introdueix una url de linkedin vàlida."}
+                                      })}/>
+                {errors.linkedin && <p>{errors.linkedin.message}</p>}
               </div>
               <br />
               <div>
-                <input className='xarxa' type="file" {...register("foto")}/>
+                <input className='xarxa' type="file" {...register("foto",{
+                                        required: "Aquest camp és obligatori",
+                                      })}/>
               </div>
             </div> 
             <div className='botonsRegistre'>
