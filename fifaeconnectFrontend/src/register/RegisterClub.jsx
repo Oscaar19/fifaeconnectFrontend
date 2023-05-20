@@ -12,7 +12,7 @@ const RegisterClub = () => {
 
     let navigate = useNavigate()
 
-    const { register, control, handleSubmit} = useForm({
+    const { register, control, handleSubmit,formState: { errors }} = useForm({
         defaultValues: {
           nom: "",
           foto: "",

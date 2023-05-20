@@ -14,7 +14,7 @@ const RegisterCoach = () => {
 
   let navigate = useNavigate()
 
-  const { register, control, handleSubmit} = useForm({
+  const { register, control, handleSubmit,formState: { errors }} = useForm({
       defaultValues: {
         twitter: "",
         linkedin: "",
