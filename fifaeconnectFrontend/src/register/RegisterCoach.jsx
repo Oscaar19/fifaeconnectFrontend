@@ -105,6 +105,7 @@ const RegisterCoach = () => {
                 <input className='xarxa' type="file" {...register("foto",{
                                         required: "Aquest camp és obligatori",
                                       })}/>
+                {errors.foto && <p>{errors.foto.message}</p>}
               </div>
             </div> 
             <div className='botonsRegistre'>
