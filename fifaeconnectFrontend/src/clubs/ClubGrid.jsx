@@ -6,7 +6,7 @@ const ClubGrid = ({ club }) => {
     <Link className='tarjeta-club' to={"/clubs/"+club.id}>
       <div className="club-card">
           <h2 className="club-name">{club.nom}</h2>
-          <img className="club-logo" src={"http://127.0.0.1:8000/storage/"+club.foto.ruta}/>
+          <img className="club-logo" src={"http://equip08.insjoaquimmir.cat/storage/"+club.foto.ruta}/>
       </div>
     </Link>    
   );

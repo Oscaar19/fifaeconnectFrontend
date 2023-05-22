@@ -82,6 +82,7 @@ export const coachSlice = createSlice({
         },
         clearCoaches: (state,action) => {
             state.coaches=[]
+            state.isLoading = false
 
         },
     },

@@ -5,7 +5,7 @@ export const getUser = (id) => {
     return async (dispatch, getState) => {
         dispatch(startLoadingGoldens());
 
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const getGoldens = (authToken) => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/goldens";
+        let url ="http://equip08.insjoaquimmir.cat/api/goldens";
 
         
         const data = await fetch(url, headers);

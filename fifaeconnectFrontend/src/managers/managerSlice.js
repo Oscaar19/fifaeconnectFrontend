@@ -89,9 +89,11 @@ export const managerSlice = createSlice({
 
         clearManagers: (state,action) => {
             state.managers=[]
+            state.isLoading = false
         },
         clearFreeAgents: (state,action) => {
             state.freeAgents=[]
+            state.isLoading = false
 
         },
     },

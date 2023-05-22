@@ -47,10 +47,13 @@ export const jugadorSlice = createSlice({
         },
         clearJugadores: (state,action) => {
             state.jugadors=[]
+            state.isLoading = false
+
 
         },
         clearFreeAgents: (state,action) => {
             state.freeAgents=[]
+            state.isLoading = false
 
         },
         setJugador: (state, action) => {

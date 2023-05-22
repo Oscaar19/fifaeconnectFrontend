@@ -21,7 +21,7 @@ export const getClubs = () => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/clubs";
+        let url ="http://equip08.insjoaquimmir.cat/api/clubs";
 
         
         const data = await fetch(url, headers);
@@ -58,7 +58,7 @@ export const addClub = (formulari,authToken) => {
         formData.append("foto", foto);
 
 
-        const data = await fetch("http://127.0.0.1:8000/api/clubs/",
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/clubs/",
 
             {
 
@@ -97,7 +97,7 @@ export const getClub = (id) => {
     return async (dispatch, getState) => {
         dispatch(startLoadingClubs());
 
-        const data = await fetch("http://127.0.0.1:8000/api/clubs/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/clubs/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",

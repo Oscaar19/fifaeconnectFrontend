@@ -4,8 +4,7 @@ export const getUser = (id) => {
 
     return async (dispatch, getState) => {
         dispatch(startLoadingJugadors());
-
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -24,7 +23,6 @@ export const getUser = (id) => {
         }
 
         else {
-
             dispatch(setMissatge(resposta.message));
 
         }
@@ -53,7 +51,7 @@ export const getJugadors = () => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/jugadors";
+        let url ="http://equip08.insjoaquimmir.cat/api/jugadors";
 
         
         const data = await fetch(url, headers);
@@ -61,7 +59,6 @@ export const getJugadors = () => {
         const resposta = await data.json();
 
         if (resposta.success == true) {
-
             dispatch(clearJugadores())
             resposta.data.map((user) => (
                 dispatch(getUser(user.id))
@@ -69,7 +66,6 @@ export const getJugadors = () => {
         }
 
         else {
-
             dispatch(setMissatge(resposta.message));
 
         }
@@ -96,7 +92,7 @@ export const addJugador = (formulari,authToken) => {
         
 
 
-        const data = await fetch("http://127.0.0.1:8000/api/jugadors/",
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/jugadors/",
 
             {
 
@@ -134,7 +130,7 @@ export const getJugador = (authToken, id) => {
     return async (dispatch, getState) => {
         dispatch(startLoadingJugadors());
 
-        const data = await fetch("http://127.0.0.1:8000/api/jugadors/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/jugadors/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -164,7 +160,7 @@ export const getJugador = (authToken, id) => {
 
 export const testGolden = (authToken,id) => {
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -175,7 +171,7 @@ export const testGolden = (authToken,id) => {
         })
         const resposta = await data.json();
         if (resposta.success === true) {
-            const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+            const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -193,7 +189,7 @@ export const testGolden = (authToken,id) => {
 export const goldenUser = (id,authToken) => {
 
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -212,7 +208,7 @@ export const goldenUser = (id,authToken) => {
 export const ungoldenUser = (id,authToken) => {
 
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -251,7 +247,7 @@ export const getFreeAgents = (authToken) => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/jugadors/freeagents";
+        let url ="http://equip08.insjoaquimmir.cat/api/jugadors/freeagents";
 
         
         const data = await fetch(url, headers);

@@ -61,6 +61,7 @@ export const clubSlice = createSlice({
         },
         clearClubs: (state,action) => {
             state.clubs=[]
+            state.isLoading = false
         },
     },
 })

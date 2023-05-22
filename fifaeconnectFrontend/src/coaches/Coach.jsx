@@ -23,7 +23,7 @@ const Coach = () => {
                 <div className="roster-page">
                     <h1 className="roster-nombre">{coach.nom} {coach.cognom}</h1>
                     <div className="roster-foto">
-                        <img src={"http://127.0.0.1:8000/storage/"+ foto.ruta} alt='Foto de perfil'/>
+                        <img src={"http://equip08.insjoaquimmir.cat/storage/"+ foto.ruta} alt='Foto de perfil'/>
                         <div className="roster-redes-sociales">
                             <h3>Xarxes Socials</h3>
                             <ul>

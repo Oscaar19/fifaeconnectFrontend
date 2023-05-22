@@ -39,6 +39,7 @@ export const goldenSlice = createSlice({
         },
         clearGoldens: (state,action) => {
             state.goldens=[]
+            state.isLoading = false
         },
     },
 })

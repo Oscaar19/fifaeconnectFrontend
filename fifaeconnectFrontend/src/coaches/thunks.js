@@ -5,7 +5,7 @@ export const getUser = (id) => {
     return async (dispatch, getState) => {
         dispatch(startLoadingCoaches());
 
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const getCoaches = () => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/coaches";
+        let url ="http://equip08.insjoaquimmir.cat/api/coaches";
 
         
         const data = await fetch(url, headers);
@@ -93,7 +93,7 @@ export const addCoach = (formulari,authToken) => {
         
 
 
-        const data = await fetch("http://127.0.0.1:8000/api/coaches/",
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/coaches/",
 
             {
 
@@ -131,7 +131,7 @@ export const getCoach = (authToken, id) => {
     return async (dispatch, getState) => {
         dispatch(startLoadingCoaches());
 
-        const data = await fetch("http://127.0.0.1:8000/api/coaches/" + id, {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/coaches/" + id, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -161,7 +161,7 @@ export const getCoach = (authToken, id) => {
 
 export const testGolden = (authToken,id) => {
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -172,7 +172,7 @@ export const testGolden = (authToken,id) => {
         })
         const resposta = await data.json();
         if (resposta.success === true) {
-            const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+            const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -190,7 +190,7 @@ export const testGolden = (authToken,id) => {
 export const goldenUser = (id,authToken) => {
 
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -209,7 +209,7 @@ export const goldenUser = (id,authToken) => {
 export const ungoldenUser = (id,authToken) => {
 
     return async (dispatch,state) => {
-        const data = await fetch("http://127.0.0.1:8000/api/users/" + id+"/goldens", {
+        const data = await fetch("http://equip08.insjoaquimmir.cat/api/users/" + id+"/goldens", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -248,7 +248,7 @@ export const getFreeAgents = (authToken) => {
         };
 
 
-        let url ="http://127.0.0.1:8000/api/coaches/freeagents";
+        let url ="http://equip08.insjoaquimmir.cat/api/coaches/freeagents";
 
         
         const data = await fetch(url, headers);
