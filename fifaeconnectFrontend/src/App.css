@@ -202,23 +202,6 @@ nav {
   margin-bottom: 20px;
 }
 
-.jugador-avatar {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
-  border-radius: 50%;
-}
-
-.jugador-info h2 {
-  font-size: 24px;
-  margin: 0 0 10px;
-}
-
-.jugador-info p {
-  font-size: 16px;
-  margin: 0;
-}
-
 .roster-page{
   height: 100%;
   width: 100%;
@@ -804,7 +787,7 @@ button {
   margin-top: 10%;
 }
 
-.input-container p{
+.p{
   color: red;
   font-family: 'Archivo', sans-serif;
   display: flex;

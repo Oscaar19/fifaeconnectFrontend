@@ -12,7 +12,7 @@ const RegisterClub = () => {
 
     let navigate = useNavigate()
 
-    const { register, control, handleSubmit} = useForm({
+    const { register, control, handleSubmit,formState: { errors }} = useForm({
         defaultValues: {
           nom: "",
           foto: "",
@@ -35,9 +35,15 @@ const RegisterClub = () => {
                       
 
                     <div className='club-info-container'>
-                        <input type="text" {...register("nom")} placeholder='NOM DEL CLUB' />
-            
-                        <input type="file" {...register("foto")}/>
+                        <input type="text" {...register("nom",{
+                                        required: "Aquest camp és obligatori",
+                                        maxLength: {value: 15,message: "Introdueix un nom mes curt."},
+                                      })} placeholder='NOM DEL CLUB' />
+                        {errors.nom && <p>{errors.nom.message}</p>}
+                        <input type="file" {...register("foto",{
+                                        required: "Aquest camp és obligatori",
+                                      })}/>
+                        {errors.foto && <p>{errors.foto.message}</p>}
                     </div>     
                     
                     <div className='botonsRegistre'>
